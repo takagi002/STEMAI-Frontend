@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { OnInit } from '@angular/core';
 import { ViewChild } from '@angular/core';
 import { ElementRef } from '@angular/core';
+import { environment } from 'src/environment';
 
 @Component({
   selector: 'app-login',
@@ -44,7 +45,7 @@ export class LoginComponent implements OnInit{
     (<any>window)['googleSDKLoaded'] = () => {
       (<any>window)['gapi'].load('auth2', () => {
         this.auth2 = (<any>window)['gapi'].auth2.init({
-          client_id: '231023855886-aet186elutkhbtagusuqfo05qi8vt64d.apps.googleusercontent.com',
+          client_id: environment.clientid,
           plugin_name:'login',
           cookiepolicy: 'single_host_origin',
           scope: 'profile email'
