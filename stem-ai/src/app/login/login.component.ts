@@ -1,14 +1,16 @@
+import { Component } from '@angular/core';
 import { OnInit } from '@angular/core';
 import { ViewChild } from '@angular/core';
-import { Component } from '@angular/core';
 import { ElementRef } from '@angular/core';
+import { environment } from 'src/environment';
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  selector: 'app-login',
+  templateUrl: './login.component.html',
+  styleUrls: ['./login.component.css']
 })
-export class AppComponent implements OnInit{
+
+export class LoginComponent implements OnInit{
   title = 'stem-ai';
   auth2: any;
   @ViewChild('loginRef', { static: true }) loginElement!: ElementRef;
@@ -43,7 +45,7 @@ export class AppComponent implements OnInit{
     (<any>window)['googleSDKLoaded'] = () => {
       (<any>window)['gapi'].load('auth2', () => {
         this.auth2 = (<any>window)['gapi'].auth2.init({
-          client_id: '215414475610-6a6dbsbbkmknl4893cjubu33en1vvlnr.apps.googleusercontent.com',
+          client_id: environment.clientid,
           plugin_name:'login',
           cookiepolicy: 'single_host_origin',
           scope: 'profile email'
@@ -62,3 +64,5 @@ export class AppComponent implements OnInit{
     }(document, 'script', 'google-jssdk'));
   }
 }
+
+
