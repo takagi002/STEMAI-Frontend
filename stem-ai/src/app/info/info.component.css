@@ -1,48 +1,20 @@
-.rectangle{
-    width:80%;
-    height:80%;
-    border: 5px solid gray;
-    display: flow-root;
-    background-color: lightgray;
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-}
-
 .center{
     text-align: center;
 }
 
-.question{
-    width: 90%;
-    height: 5%;
-    background-color: white;
-    position: relative;
-    left: 50%;
-    top: 20%;
-    transform: translate(-51%, -90%);
-    padding: 1%;
-    margin-bottom: 10%;
+.button{
+    width: 20%;
+    left: 39%;
+    margin: 1%;
 }
 
-.continue{
-    position: relative;
-    left: 50%;
-    top: 20%;
-    transform: translate(-50%, -50%);
-    width: 200px;
-    height: 50px;
-    font-size: 20px;
-    font-weight: 400;
-}
-
-.text{
-    font-size: 30px;
-}
-
-.box{
-    background-color: white;
+.row{
     display: flex;
-    justify-content: space-around;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+}
+
+.card{
+    width: 80%;
+    margin: 10%;
 }

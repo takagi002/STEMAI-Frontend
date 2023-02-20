@@ -1,12 +1,15 @@
-<mat-card >
-    <h1 class="center">User Info</h1>
-    <mat-card>
+<section>
+    <mat-card class="card">
+        <h2 class="center">User Info</h2>
         <mat-card-content >
-            <mat-checkbox class="text" >Student</mat-checkbox>
-            <mat-checkbox class="text" >Professor</mat-checkbox>
+            <div class="row">
+                <mat-checkbox id="Student" class="text">Student</mat-checkbox>
+                <mat-checkbox id="Professor" class="text">Professor</mat-checkbox>
+            </div>
+            <button mat-raised-button class="button" (click)="goToPage('student-rec')">
+                Continue
+            </button>
         </mat-card-content>
     </mat-card>
-    <button class="continue">
-        Continue
-    </button>
-</mat-card>
+</section>
+    

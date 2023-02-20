@@ -1,3 +1,7 @@
+
 <main>
+    <mat-toolbar class="main-nav" *ngIf="router.url !='/student-rec'">
+        <span>Tutoring Recommendations</span>
+    </mat-toolbar>
     <router-outlet></router-outlet>
 </main>
