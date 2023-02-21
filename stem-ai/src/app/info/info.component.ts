@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-info',
@@ -6,5 +7,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./info.component.css']
 })
 export class InfoComponent {
+  constructor(private router: Router) { }
+  goToPage(pageName:string){
+    this.router.navigate([`${pageName}`]);
+  }
 
 }

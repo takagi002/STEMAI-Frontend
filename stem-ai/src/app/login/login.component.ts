@@ -69,5 +69,3 @@ export class LoginComponent implements OnInit{
     }(document, 'script', 'google-jssdk'));
   }
 }
-
-
