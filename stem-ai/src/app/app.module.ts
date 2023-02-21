@@ -10,6 +10,11 @@ import {MatCardModule} from '@angular/material/card';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatButtonModule} from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
+import {MatInputModule} from '@angular/material/input';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatDividerModule} from '@angular/material/divider';
+import {MatGridListModule} from '@angular/material/grid-list';
+import {MatTooltipModule} from '@angular/material/tooltip';
 
 import { AppComponent } from './app.component';
 import { InfoComponent } from './info/info.component';
@@ -33,7 +38,7 @@ imports: [
 ]
 
 @NgModule({
-  imports:      [MatIconModule, MatButtonModule, MatToolbarModule, MatSlideToggleModule, MatCheckboxModule, MatCardModule, FlexLayoutModule, BrowserModule, RouterModule.forRoot(routes)],
+  imports:      [ MatTooltipModule, MatGridListModule, MatDividerModule, MatFormFieldModule, MatInputModule, MatIconModule, MatButtonModule, MatToolbarModule, MatSlideToggleModule, MatCheckboxModule, MatCardModule, FlexLayoutModule, BrowserModule, RouterModule.forRoot(routes)],
   declarations: [ AppComponent, LoginComponent, InfoComponent, StudentRecComponent ],
   bootstrap:    [ AppComponent ]
 })
