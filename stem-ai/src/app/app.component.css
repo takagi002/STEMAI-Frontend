@@ -1,6 +1,8 @@
   .main-nav{
     background-color: rgba(5, 5, 5, 0.856);
     -webkit-text-fill-color: white;
+    justify-content: space-between;
+    margin-bottom: 1%;
     font-size: 30px;
   }
 
