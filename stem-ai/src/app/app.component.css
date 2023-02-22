@@ -12,3 +12,10 @@
     position: fixed;
     height: 20%;
   }
+
+  .row{
+    display: flex;
+    justify-content: space-evenly;
+    padding: 10px;
+    -webkit-text-fill-color: white;
+}
