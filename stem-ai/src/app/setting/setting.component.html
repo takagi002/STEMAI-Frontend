@@ -1,0 +1,30 @@
+<mat-card class="card">
+    <mat-card-title style="text-align: center; font-size: 30px; padding: 10px;">Settings</mat-card-title>
+    <mat-divider></mat-divider>
+    <mat-card-content>
+        <div>
+            <h3>Notification Settings</h3>
+            <mat-list role="list">
+                <mat-list-item role="listitem">
+                    <mat-checkbox>Notify when recommendations are updated</mat-checkbox>
+                </mat-list-item>
+                <mat-list-item role="listitem">
+                    <mat-checkbox>Notify if user changed notification settings</mat-checkbox>
+                </mat-list-item>
+            </mat-list>
+        </div>
+        <mat-divider></mat-divider>
+        <div>
+            <h3>Theme Settings</h3>
+            <div class="row">
+                <button mat-icon-button class="button">
+                    <mat-icon>light_mode</mat-icon>
+                </button>
+                <button mat-icon-button class="button">
+                    <mat-icon>dark_mode</mat-icon>
+                </button>
+            </div>
+        </div>
+        <mat-divider></mat-divider>
+    </mat-card-content>
+</mat-card>
