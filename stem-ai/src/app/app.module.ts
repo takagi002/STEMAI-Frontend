@@ -24,6 +24,7 @@ import { AppComponent } from './app.component';
 import { InfoComponent } from './info/info.component';
 import { LoginComponent } from './login/login.component';
 import { StudentRecComponent } from './student-rec/student-rec.component';
+import { SettingComponent } from './setting/setting.component';
 import { ClassService } from './class-service/class.service';
 
 
@@ -34,7 +35,16 @@ const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
   { path: 'student-rec', component: StudentRecComponent },
   { path: '', redirectTo: '/student-rec', pathMatch: 'full' },
+  { path: 'setting', component: SettingComponent },
+  { path: '', redirectTo: '/setting', pathMatch: 'full' },
 ];
+
+imports: [
+  RouterModule,
+  BrowserModule,
+  BrowserAnimationsModule,
+]
+
 
 imports: [
   RouterModule,
