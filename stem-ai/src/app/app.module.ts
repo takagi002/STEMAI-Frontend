@@ -45,15 +45,8 @@ imports: [
   BrowserAnimationsModule,
 ]
 
-
-imports: [
-  RouterModule,
-  BrowserModule,
-  BrowserAnimationsModule
-]
-
 @NgModule({
-  imports:      [ MatTooltipModule, MatGridListModule, MatDividerModule, MatFormFieldModule, MatInputModule, MatIconModule, MatButtonModule, MatToolbarModule, MatSlideToggleModule, MatCheckboxModule, MatCardModule, FlexLayoutModule, BrowserModule, RouterModule.forRoot(routes), HttpClientModule, MatListModule],
+  imports:      [ HttpClientModule, MatListModule, MatTooltipModule, MatGridListModule, MatDividerModule, MatFormFieldModule, MatInputModule, MatIconModule, MatButtonModule, MatToolbarModule, MatSlideToggleModule, MatCheckboxModule, MatCardModule, FlexLayoutModule, BrowserModule, RouterModule.forRoot(routes)],
   declarations: [ AppComponent, LoginComponent, InfoComponent, StudentRecComponent ],
   bootstrap:    [ AppComponent ],
   providers: [ ClassService ]
