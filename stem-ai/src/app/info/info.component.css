@@ -1,0 +1,30 @@
+.center{
+    text-align: center;
+    font-size: 30px;
+    padding: 20px;
+}
+
+.button{
+    width:25%;
+    font-size: 15px; 
+}
+
+.row{
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    padding: 20px;
+}
+
+.input{
+    padding-top: 20px;
+    margin: auto; 
+    width: 100%;
+}
+
+.card{
+    width: 80%;
+    margin-top: 5%;
+    margin-left: 10%;
+    padding: 20px;
+}

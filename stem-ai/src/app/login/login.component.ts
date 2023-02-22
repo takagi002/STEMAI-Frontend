@@ -3,6 +3,8 @@ import { OnInit } from '@angular/core';
 import { ViewChild } from '@angular/core';
 import { ElementRef } from '@angular/core';
 import { environment } from 'src/environment';
+import {Router} from '@angular/router';
+
 
 @Component({
   selector: 'app-login',
@@ -14,7 +16,10 @@ export class LoginComponent implements OnInit{
   title = 'stem-ai';
   auth2: any;
   @ViewChild('loginRef', { static: true }) loginElement!: ElementRef;
-  constructor() { }
+  constructor(private router: Router) { }
+  goToPage(pageName:string){
+    this.router.navigate([`${pageName}`]);
+  }
   ngOnInit() {
 
     this.googleAuthSDK();
@@ -64,5 +69,3 @@ export class LoginComponent implements OnInit{
     }(document, 'script', 'google-jssdk'));
   }
 }
-
-

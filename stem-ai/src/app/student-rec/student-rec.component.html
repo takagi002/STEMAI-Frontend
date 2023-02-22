@@ -1,0 +1,20 @@
+<div>
+    <mat-list *ngFor="let class of classes">
+        <mat-list-item>
+            <mat-card class="card">
+                <div class="row">
+                    <div class="row">
+                        <mat-icon style="padding: 17px;">book</mat-icon>
+                        <p > {{class.department}}: {{class.course_id}}  </p>
+                    </div>
+                    <div class="row">
+                        <mat-checkbox style="padding: 9px;" disabled="true" checked="true"></mat-checkbox>
+                        <mat-icon style="padding: 17px; color: gray;" 
+                        matTooltip="Based on our machine learning algorithm, students with similar grades to
+                        you have improved a letter grade by getting tutoring for this class">help</mat-icon>
+                    </div>
+                </div>
+            </mat-card>
+        </mat-list-item>
+    </mat-list>
+</div>
