@@ -15,11 +15,13 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatDividerModule} from '@angular/material/divider';
 import {MatGridListModule} from '@angular/material/grid-list';
 import {MatTooltipModule} from '@angular/material/tooltip';
+import {MatListModule} from '@angular/material/list';
 
 import { AppComponent } from './app.component';
 import { InfoComponent } from './info/info.component';
 import { LoginComponent } from './login/login.component';
 import { StudentRecComponent } from './student-rec/student-rec.component';
+import { SettingComponent } from './setting/setting.component';
 
 
 const routes: Routes = [
@@ -29,6 +31,8 @@ const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
   { path: 'student-rec', component: StudentRecComponent },
   { path: '', redirectTo: '/student-rec', pathMatch: 'full' },
+  { path: 'setting', component: SettingComponent },
+  { path: '', redirectTo: '/setting', pathMatch: 'full' },
 ];
 
 imports: [
@@ -38,8 +42,8 @@ imports: [
 ]
 
 @NgModule({
-  imports:      [ MatTooltipModule, MatGridListModule, MatDividerModule, MatFormFieldModule, MatInputModule, MatIconModule, MatButtonModule, MatToolbarModule, MatSlideToggleModule, MatCheckboxModule, MatCardModule, FlexLayoutModule, BrowserModule, RouterModule.forRoot(routes)],
-  declarations: [ AppComponent, LoginComponent, InfoComponent, StudentRecComponent ],
+  imports:      [ MatListModule, MatTooltipModule, MatGridListModule, MatDividerModule, MatFormFieldModule, MatInputModule, MatIconModule, MatButtonModule, MatToolbarModule, MatSlideToggleModule, MatCheckboxModule, MatCardModule, FlexLayoutModule, BrowserModule, RouterModule.forRoot(routes)],
+  declarations: [ AppComponent, LoginComponent, InfoComponent, StudentRecComponent, SettingComponent ],
   bootstrap:    [ AppComponent ]
 })
 

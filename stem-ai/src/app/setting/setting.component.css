@@ -1,0 +1,18 @@
+.card{
+    width: 90%;
+    margin: auto;
+    padding: 10px;
+}
+
+.button{
+    width: 100px;
+    height: 100px;
+    background-color: lightgray;
+}
+
+.row{
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    padding: 20px;
+}
