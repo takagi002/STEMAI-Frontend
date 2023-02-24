@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule, Routes } from '@angular/router';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {FlexLayoutModule} from '@angular/flex-layout';
+import { HttpClientModule } from '@angular/common/http';
 
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
@@ -22,7 +23,7 @@ import { InfoComponent } from './info/info.component';
 import { LoginComponent } from './login/login.component';
 import { StudentRecComponent } from './student-rec/student-rec.component';
 import { SettingComponent } from './setting/setting.component';
-
+import { ClassService } from './class-service/class.service';
 
 const routes: Routes = [
   { path: 'info', component: InfoComponent },
@@ -42,9 +43,10 @@ imports: [
 ]
 
 @NgModule({
-  imports:      [ MatListModule, MatTooltipModule, MatGridListModule, MatDividerModule, MatFormFieldModule, MatInputModule, MatIconModule, MatButtonModule, MatToolbarModule, MatSlideToggleModule, MatCheckboxModule, MatCardModule, FlexLayoutModule, BrowserModule, RouterModule.forRoot(routes)],
+  imports:      [ HttpClientModule, MatListModule, MatTooltipModule, MatGridListModule, MatDividerModule, MatFormFieldModule, MatInputModule, MatIconModule, MatButtonModule, MatToolbarModule, MatSlideToggleModule, MatCheckboxModule, MatCardModule, FlexLayoutModule, BrowserModule, RouterModule.forRoot(routes)],
   declarations: [ AppComponent, LoginComponent, InfoComponent, StudentRecComponent, SettingComponent ],
-  bootstrap:    [ AppComponent ]
+  bootstrap:    [ AppComponent ],
+  providers: [ ClassService ]
 })
 
 export class AppModule { 
