@@ -8,17 +8,17 @@
                 <form >
                     <mat-form-field class="input">
                         <mat-label>Gannon ID</mat-label>
-                        <input matInput placeholder="Ex. smith001">
+                        <input matInput placeholder="Ex. smith001" [(ngModel)]="gannonID" name="gannonIDLabel">
                     </mat-form-field>
                 </form>
             </div>
             <mat-divider></mat-divider>
             <div class="row">
-                <button mat-raised-button class="button">
+                <button mat-raised-button class="button" (click)="addProfessorUser()">
                     <mat-icon>school</mat-icon>
                     <p>Professor</p>
                 </button>
-                <button mat-raised-button class="button">
+                <button mat-raised-button class="button" (click)="addStudentUser()">
                     <mat-icon>auto_stories</mat-icon>
                     <p>Student</p>
                 </button>

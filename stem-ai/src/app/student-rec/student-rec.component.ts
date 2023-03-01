@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { OnInit } from '@angular/core';
-import { ClassService } from '../class-service/class.service';
+import { ClassService } from '../services/class-service/class.service';
 
 @Component({
   selector: 'app-student-rec',
