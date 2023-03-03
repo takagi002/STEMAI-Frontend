@@ -41,11 +41,12 @@ export class UserService {
     return this.http.post(`${this.uri}/user`, newUser, this.httpOptions);
   }
 
-  updateUserByGannonID(gannon_id: String, gmail: String, userType: String){
+  updateUserByGannonID(gannon_id: String, gmail: String, userType: String, authenticated: boolean){
     const updatedUser = {
       gmail: gmail,
       userType: userType,
-      gannon_id: gannon_id
+      gannon_id: gannon_id,
+      authenticated: authenticated
     }
     return this.http.patch(`${this.uri}/user/gmail/${gmail}`, updatedUser, this.httpOptions);
   }
