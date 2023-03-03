@@ -21,13 +21,14 @@ export class UserService {
   getUsers() {
     return this.http.get(`${this.uri}/user`);
   }
-  getClassByGannonId(gannon_id: String) {
+  getUserByGannonId(gannon_id: String) {
     return this.http.get(`${this.uri}/user/gannonID/${gannon_id}`);
   }
-  getClassByObjectId(id: String) {
-    return this.http.get(`${this.uri}/user/objectID/${id}`);
-  }
 
+  getUserByGmailId(gmail: String) {
+    return this.http.get(`${this.uri}/user/gmail/${gmail}`);
+  }
+ 
   checkIfUserExists(gmail: String) {
     return this.http.get(`${this.uri}/user/exists/${gmail}`)
   }
@@ -49,5 +50,15 @@ export class UserService {
       authenticated: authenticated
     }
     return this.http.patch(`${this.uri}/user/gmail/${gmail}`, updatedUser, this.httpOptions);
+  }
+
+  sendCode(gannon_id: String, gmail: String, userType: String, authenticated: boolean){
+    const user = {
+      gmail: gmail,
+      userType: userType,
+      gannon_id: gannon_id,
+      authenticated: authenticated
+    }
+    return this.http.post(`${this.uri}/user/generateCode`, user, this.httpOptions);
   }
 }

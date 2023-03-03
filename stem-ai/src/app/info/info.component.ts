@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, OnInit, Inject, NgZone } from '@angular/core';
 import {Router} from '@angular/router';
 import { UserService } from '../services/user-services/user.service';
 import {MatDialog, MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
@@ -23,11 +23,10 @@ export class InfoComponent implements OnInit {
   gannonID: any;
 
   
-  constructor(private router: Router, private userService: UserService, public dialogRef: MatDialog) { }
+  constructor(private router: Router, private userService: UserService, public dialogRef: MatDialog, private zone: NgZone) { }
 
 
   ngOnInit(): void {
-    console.log("info: " + this.userService.currentUser)
     this.currentUser = this.userService.currentUser;
     this.userService.currentUser = undefined;
   }
@@ -36,22 +35,23 @@ export class InfoComponent implements OnInit {
   }
 
   openDialog(){
-    this.dialogRef.open(VerificationPopupComponent);
+    this.userService.currentUser = this.currentUser;
+    this.zone.run(() => {
+      this.dialogRef.open(VerificationPopupComponent);
+    })
+    
   }
 
   async addProfessorUser(){
-
-    this.userService.updateUserByGannonID(this.gannonID, this.currentUser, "professor", false).subscribe(res => {
-      console.log(this.gannonID + " added to user: " + this.currentUser + "as a professor user");
-      this.openDialog();
-  })
+    this.userService.updateUserByGannonID(this.gannonID, this.currentUser, "professor", false).subscribe(res => {})
+    this.userService.sendCode(this.gannonID, this.currentUser, "professor", false).subscribe(res => {})
+    this.openDialog();
 }
 
   async addStudentUser(){
-    this.userService.updateUserByGannonID(this.gannonID, this.currentUser, "student", false).subscribe(res => {
-      console.log(this.gannonID + " added to user: " + this.currentUser + "as a student user");
-      this.openDialog();
-  })
+    this.userService.updateUserByGannonID(this.gannonID, this.currentUser, "student", false).subscribe(res => {})
+    this.userService.sendCode(this.gannonID, this.currentUser, "student", false).subscribe(res => {})
+    this.openDialog();
   }
 
 }
