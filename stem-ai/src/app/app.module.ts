@@ -18,6 +18,7 @@ import {MatDividerModule} from '@angular/material/divider';
 import {MatGridListModule} from '@angular/material/grid-list';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatListModule} from '@angular/material/list';
+import {MatDialogModule} from '@angular/material/dialog';
 
 import { AppComponent } from './app.component';
 import { InfoComponent } from './info/info.component';
@@ -25,6 +26,7 @@ import { LoginComponent } from './login/login.component';
 import { StudentRecComponent } from './student-rec/student-rec.component';
 import { SettingComponent } from './setting/setting.component';
 import { ClassService } from './services/class-service/class.service';
+import { VerificationPopupComponent } from './verification-popup/verification-popup.component';
 
 const routes: Routes = [
   { path: 'info', component: InfoComponent },
@@ -44,8 +46,11 @@ imports: [
 ]
 
 @NgModule({
-  imports:      [ HttpClientModule, MatListModule, MatTooltipModule, MatGridListModule, MatDividerModule, MatFormFieldModule, MatInputModule, MatIconModule, MatButtonModule, MatToolbarModule, MatSlideToggleModule, MatCheckboxModule, MatCardModule, FlexLayoutModule, BrowserModule, RouterModule.forRoot(routes), FormsModule],
-  declarations: [ AppComponent, LoginComponent, InfoComponent, StudentRecComponent, SettingComponent ],
+  imports:      [ HttpClientModule, MatListModule, MatTooltipModule, MatGridListModule, MatDividerModule, 
+                  MatFormFieldModule, MatInputModule, MatIconModule, MatButtonModule, MatToolbarModule, MatSlideToggleModule, 
+                  MatCheckboxModule, MatCardModule, FlexLayoutModule, BrowserModule, RouterModule.forRoot(routes), 
+                  FormsModule, MatDialogModule],
+  declarations: [ AppComponent, LoginComponent, InfoComponent, StudentRecComponent, SettingComponent, VerificationPopupComponent ],
   bootstrap:    [ AppComponent ],
   providers: [ ClassService ]
 })
