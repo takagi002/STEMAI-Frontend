@@ -33,6 +33,10 @@ export class UserService {
     return this.http.get(`${this.uri}/user/exists/${gmail}`)
   }
 
+  checkIfUserAuthenticated(gmail: String) {
+    return this.http.get(`${this.uri}/user/authenticated/${gmail}`)
+  }
+
   addUser(gmail: String) {
     const newUser = {
       gmail: gmail,
