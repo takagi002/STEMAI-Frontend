@@ -48,7 +48,7 @@ export class LoginComponent implements OnInit{
         this.currentUser = profile.getEmail();
         this.checkUserExists(profile.getEmail());
 
-        this.goToPage('info')
+        
 
       }, (error: any) => {
         alert(JSON.stringify(error, undefined, 2));
@@ -84,7 +84,6 @@ export class LoginComponent implements OnInit{
   async addNewUser(gmail: String) {
     this.userService.addUser(gmail).subscribe(res => {
       this.user = res;
-      console.log(this.user);
     }) 
   }
 
@@ -94,9 +93,24 @@ export class LoginComponent implements OnInit{
       exists = res;
       if(!exists){
         this.addNewUser(gmail);
-      } 
+        this.goToPage('info');
+      } else {
+        this.checkIfAuthenticated(gmail);
+      }
      
     })
     
+  }
+
+  async checkIfAuthenticated(gmail: String){
+    var authenticated: any;
+    await this.userService.checkIfUserAuthenticated(gmail).subscribe(res => {
+      authenticated = res;
+      if(authenticated){
+        this.goToPage('student-rec');
+      } else {
+        this.goToPage('info');
+      }
+    })
   }
 }
