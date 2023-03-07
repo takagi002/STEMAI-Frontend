@@ -19,6 +19,8 @@ import {MatGridListModule} from '@angular/material/grid-list';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatListModule} from '@angular/material/list';
 import {MatDialogModule} from '@angular/material/dialog';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
+
 
 import { AppComponent } from './app.component';
 import { InfoComponent } from './info/info.component';
@@ -27,6 +29,7 @@ import { StudentRecComponent } from './student-rec/student-rec.component';
 import { SettingComponent } from './setting/setting.component';
 import { ClassService } from './services/class-service/class.service';
 import { VerificationPopupComponent } from './verification-popup/verification-popup.component';
+import { OnlynumberDirective } from './onlynumber.directive';
 
 const routes: Routes = [
   { path: 'info', component: InfoComponent },
@@ -49,8 +52,8 @@ imports: [
   imports:      [ HttpClientModule, MatListModule, MatTooltipModule, MatGridListModule, MatDividerModule, 
                   MatFormFieldModule, MatInputModule, MatIconModule, MatButtonModule, MatToolbarModule, MatSlideToggleModule, 
                   MatCheckboxModule, MatCardModule, FlexLayoutModule, BrowserModule, RouterModule.forRoot(routes), 
-                  FormsModule, MatDialogModule],
-  declarations: [ AppComponent, LoginComponent, InfoComponent, StudentRecComponent, SettingComponent, VerificationPopupComponent ],
+                  FormsModule, MatDialogModule, MatSnackBarModule, BrowserAnimationsModule],
+  declarations: [ AppComponent, LoginComponent, InfoComponent, StudentRecComponent, SettingComponent, VerificationPopupComponent, OnlynumberDirective ],
   bootstrap:    [ AppComponent ],
   providers: [ ClassService ]
 })
