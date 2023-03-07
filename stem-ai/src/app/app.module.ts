@@ -27,6 +27,7 @@ import { StudentRecComponent } from './student-rec/student-rec.component';
 import { SettingComponent } from './setting/setting.component';
 import { ClassService } from './services/class-service/class.service';
 import { VerificationPopupComponent } from './verification-popup/verification-popup.component';
+import { OnlynumberDirective } from './onlynumber.directive';
 
 const routes: Routes = [
   { path: 'info', component: InfoComponent },
@@ -50,7 +51,7 @@ imports: [
                   MatFormFieldModule, MatInputModule, MatIconModule, MatButtonModule, MatToolbarModule, MatSlideToggleModule, 
                   MatCheckboxModule, MatCardModule, FlexLayoutModule, BrowserModule, RouterModule.forRoot(routes), 
                   FormsModule, MatDialogModule],
-  declarations: [ AppComponent, LoginComponent, InfoComponent, StudentRecComponent, SettingComponent, VerificationPopupComponent ],
+  declarations: [ AppComponent, LoginComponent, InfoComponent, StudentRecComponent, SettingComponent, VerificationPopupComponent, OnlynumberDirective ],
   bootstrap:    [ AppComponent ],
   providers: [ ClassService ]
 })

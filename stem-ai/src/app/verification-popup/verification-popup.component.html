@@ -3,7 +3,7 @@
   <p>Enter the verification code sent to your Gannon email</p>
   <mat-form-field appearance="fill">
     <mat-label>Verification Code</mat-label>
-    <input matInput [(ngModel)]="code">
+    <input matInput maxlength="6" [(ngModel)]="code" appOnlynumber>
   </mat-form-field>
 </div>
 <div mat-dialog-actions>

@@ -12,7 +12,9 @@ export class VerificationPopupComponent implements OnInit {
   currentUser: any;
   userWithCode: any;
 
+  
 
+  
   constructor(private userService: UserService) {}
 
   ngOnInit(): void {
@@ -44,4 +46,6 @@ export class VerificationPopupComponent implements OnInit {
       console.log("We the best music!!!")
     })
   }
+
+  
 }
