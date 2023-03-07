@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialogRef } from '@angular/material/dialog';
+import { Router } from '@angular/router';
 import { UserService } from '../services/user-services/user.service';
+import {MatSnackBar} from '@angular/material/snack-bar';
 
 
 @Component({
@@ -15,7 +18,7 @@ export class VerificationPopupComponent implements OnInit {
   
 
   
-  constructor(private userService: UserService) {}
+  constructor(private userService: UserService, private router: Router, public dialogRef: MatDialogRef<VerificationPopupComponent>, private errorSnackBar: MatSnackBar) {}
 
   ngOnInit(): void {
     
@@ -24,6 +27,17 @@ export class VerificationPopupComponent implements OnInit {
 
     this.getCodeFromUser();
 
+  }
+
+  goToPage(pageName:string){
+    this.router.navigate([`${pageName}`]);
+  }
+
+  openSnackBar() {
+    this.errorSnackBar.open("Incorrect Authentication Code", "Close",{
+      horizontalPosition: "center",
+      verticalPosition: "top",
+    });
   }
 
   async getCodeFromUser(){
@@ -35,15 +49,16 @@ export class VerificationPopupComponent implements OnInit {
   checkCode(){
     if(this.userWithCode.authenticationCode == this.code){
       this.authenticateUser();
+      this.goToPage("student-rec")
+      this.dialogRef.close();
     } else {
-      console.log("Dumbass");
+      this.openSnackBar();
     }
   }
   
   async authenticateUser(){
   
     await this.userService.updateUserByGannonID(this.userWithCode.gannon_id ,this.userWithCode.gmail, this.userWithCode.userType, true).subscribe(res =>{
-      console.log("We the best music!!!")
     })
   }
 
