@@ -14,11 +14,11 @@
             </div>
             <mat-divider></mat-divider>
             <div class="row">
-                <button mat-raised-button class="button" (click)="addProfessorUser()">
+                <button mat-raised-button class="button" (click)="checkIfGannonIDExists('professor')">
                     <mat-icon>school</mat-icon>
                     <p>Professor</p>
                 </button>
-                <button mat-raised-button class="button" (click)="addStudentUser()">
+                <button mat-raised-button class="button" (click)="checkIfGannonIDExists('student')">
                     <mat-icon>auto_stories</mat-icon>
                     <p>Student</p>
                 </button>
