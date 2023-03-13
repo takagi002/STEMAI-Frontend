@@ -6,13 +6,10 @@
     font-size: 30px;
   }
 
-  .body{
-    height: 100vh;
-  }
 
   .footer{
     background-color: rgba(5, 5, 5, 0.856);
-    margin-top: 20px;
+    margin-top: 10px;
   }
 
   .row{
