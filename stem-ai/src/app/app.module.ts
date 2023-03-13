@@ -32,6 +32,7 @@ import { VerificationPopupComponent } from './verification-popup/verification-po
 import { OnlynumberDirective } from './onlynumber.directive';
 import { WconlinePopupComponent } from './wconline-popup/wconline-popup.component';
 import { ProfessorClassesComponent } from './professor-classes/professor-classes.component';
+import { ContactPageComponent } from './contact-page/contact-page.component';
 
 const routes: Routes = [
   { path: 'info', component: InfoComponent },
@@ -43,7 +44,9 @@ const routes: Routes = [
   { path: 'setting', component: SettingComponent },
   { path: '', redirectTo: '/setting', pathMatch: 'full' },
   { path: 'professor-classes', component: ProfessorClassesComponent },
-  { path: '', redirectTo: '/professor-classes', pathMatch: 'full' }
+  { path: '', redirectTo: '/professor-classes', pathMatch: 'full' },
+  { path: 'contact-page', component: ContactPageComponent },
+  { path: '', redirectTo: '/contact-page', pathMatch: 'full' }
 ];
 
 imports: [
@@ -57,7 +60,7 @@ imports: [
                   MatFormFieldModule, MatInputModule, MatIconModule, MatButtonModule, MatToolbarModule, MatSlideToggleModule, 
                   MatCheckboxModule, MatCardModule, FlexLayoutModule, BrowserModule, RouterModule.forRoot(routes), 
                   FormsModule, MatDialogModule, MatSnackBarModule, BrowserAnimationsModule],
-  declarations: [ AppComponent, LoginComponent, InfoComponent, StudentRecComponent, SettingComponent, VerificationPopupComponent, OnlynumberDirective, WconlinePopupComponent, ProfessorClassesComponent ],
+  declarations: [ AppComponent, LoginComponent, InfoComponent, StudentRecComponent, SettingComponent, VerificationPopupComponent, OnlynumberDirective, WconlinePopupComponent, ProfessorClassesComponent, ContactPageComponent ],
   bootstrap:    [ AppComponent ],
   providers: [ ClassService ]
 })

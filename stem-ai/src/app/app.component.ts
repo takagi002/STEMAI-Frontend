@@ -10,6 +10,7 @@ import {Router} from '@angular/router';
 export class AppComponent{
   title = 'stem-ai';
   constructor(public router: Router) { }
+  
   goToPage(pageName:string){
     this.router.navigate([`${pageName}`]);
   }
