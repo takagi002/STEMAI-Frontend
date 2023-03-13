@@ -30,6 +30,7 @@ import { SettingComponent } from './setting/setting.component';
 import { ClassService } from './services/class-service/class.service';
 import { VerificationPopupComponent } from './verification-popup/verification-popup.component';
 import { OnlynumberDirective } from './onlynumber.directive';
+import { WconlinePopupComponent } from './wconline-popup/wconline-popup.component';
 
 const routes: Routes = [
   { path: 'info', component: InfoComponent },
@@ -53,7 +54,7 @@ imports: [
                   MatFormFieldModule, MatInputModule, MatIconModule, MatButtonModule, MatToolbarModule, MatSlideToggleModule, 
                   MatCheckboxModule, MatCardModule, FlexLayoutModule, BrowserModule, RouterModule.forRoot(routes), 
                   FormsModule, MatDialogModule, MatSnackBarModule, BrowserAnimationsModule],
-  declarations: [ AppComponent, LoginComponent, InfoComponent, StudentRecComponent, SettingComponent, VerificationPopupComponent, OnlynumberDirective ],
+  declarations: [ AppComponent, LoginComponent, InfoComponent, StudentRecComponent, SettingComponent, VerificationPopupComponent, OnlynumberDirective, WconlinePopupComponent ],
   bootstrap:    [ AppComponent ],
   providers: [ ClassService ]
 })
