@@ -1,6 +1,12 @@
-import { Component } from '@angular/core';
+import { Component, NgZone } from '@angular/core';
 import { OnInit } from '@angular/core';
-import { ClassService } from '../class-service/class.service';
+import { ClassService } from '../services/class-service/class.service';
+import {MatDialog, MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
+import { WconlinePopupComponent } from '../wconline-popup/wconline-popup.component';
+
+export interface DialogData {
+  code: any;
+}
 
 @Component({
   selector: 'app-student-rec',
@@ -8,7 +14,7 @@ import { ClassService } from '../class-service/class.service';
   styleUrls: ['./student-rec.component.css']
 })
 export class StudentRecComponent implements OnInit{
-  constructor(private classService: ClassService) {}
+  constructor(private classService: ClassService, public dialogRef: MatDialog,private zone: NgZone) {}
 
   classes: any = [];
 
@@ -16,9 +22,12 @@ export class StudentRecComponent implements OnInit{
     this.classService.getClasses().subscribe(res => {
       this.classes = res;
       console.log(this.classes);
+    })  
+  }
+  openDialog(){
+    this.zone.run(() => {
+      this.dialogRef.open(WconlinePopupComponent);
     })
     
   }
-
-
 }

@@ -4,7 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {FlexLayoutModule} from '@angular/flex-layout';
 import { HttpClientModule } from '@angular/common/http';
-
+import { FormsModule } from '@angular/forms';
 
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
@@ -18,6 +18,8 @@ import {MatDividerModule} from '@angular/material/divider';
 import {MatGridListModule} from '@angular/material/grid-list';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatListModule} from '@angular/material/list';
+import {MatDialogModule} from '@angular/material/dialog';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 
 
 import { AppComponent } from './app.component';
@@ -25,8 +27,11 @@ import { InfoComponent } from './info/info.component';
 import { LoginComponent } from './login/login.component';
 import { StudentRecComponent } from './student-rec/student-rec.component';
 import { SettingComponent } from './setting/setting.component';
-import { ClassService } from './class-service/class.service';
-
+import { ClassService } from './services/class-service/class.service';
+import { VerificationPopupComponent } from './verification-popup/verification-popup.component';
+import { OnlynumberDirective } from './onlynumber.directive';
+import { WconlinePopupComponent } from './wconline-popup/wconline-popup.component';
+import { ProfessorClassesComponent } from './professor-classes/professor-classes.component';
 
 const routes: Routes = [
   { path: 'info', component: InfoComponent },
@@ -37,6 +42,8 @@ const routes: Routes = [
   { path: '', redirectTo: '/student-rec', pathMatch: 'full' },
   { path: 'setting', component: SettingComponent },
   { path: '', redirectTo: '/setting', pathMatch: 'full' },
+  { path: 'professor-classes', component: ProfessorClassesComponent },
+  { path: '', redirectTo: '/professor-classes', pathMatch: 'full' }
 ];
 
 imports: [
@@ -46,8 +53,11 @@ imports: [
 ]
 
 @NgModule({
-  imports:      [ HttpClientModule, MatListModule, MatTooltipModule, MatGridListModule, MatDividerModule, MatFormFieldModule, MatInputModule, MatIconModule, MatButtonModule, MatToolbarModule, MatSlideToggleModule, MatCheckboxModule, MatCardModule, FlexLayoutModule, BrowserModule, RouterModule.forRoot(routes)],
-  declarations: [ AppComponent, LoginComponent, InfoComponent, StudentRecComponent ],
+  imports:      [ HttpClientModule, MatListModule, MatTooltipModule, MatGridListModule, MatDividerModule, 
+                  MatFormFieldModule, MatInputModule, MatIconModule, MatButtonModule, MatToolbarModule, MatSlideToggleModule, 
+                  MatCheckboxModule, MatCardModule, FlexLayoutModule, BrowserModule, RouterModule.forRoot(routes), 
+                  FormsModule, MatDialogModule, MatSnackBarModule, BrowserAnimationsModule],
+  declarations: [ AppComponent, LoginComponent, InfoComponent, StudentRecComponent, SettingComponent, VerificationPopupComponent, OnlynumberDirective, WconlinePopupComponent, ProfessorClassesComponent ],
   bootstrap:    [ AppComponent ],
   providers: [ ClassService ]
 })
