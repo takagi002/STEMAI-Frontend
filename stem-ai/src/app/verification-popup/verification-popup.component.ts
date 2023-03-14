@@ -22,6 +22,7 @@ export class VerificationPopupComponent implements OnInit {
 
   ngOnInit(): void {
     
+    //getting user from previous page
     this.currentUser = this.userService.currentUser;
     this.userService.currentUser = undefined;
 
@@ -29,10 +30,13 @@ export class VerificationPopupComponent implements OnInit {
 
   }
 
+  //just a routing method
   goToPage(pageName:string){
+    this.userService.currentUser = this.currentUser;
     this.router.navigate([`${pageName}`]);
   }
 
+  //opens up a snackbar to show an incorrect code was entered
   openSnackBar() {
     this.errorSnackBar.open("Incorrect Authentication Code", "Close",{
       horizontalPosition: "center",
@@ -40,15 +44,18 @@ export class VerificationPopupComponent implements OnInit {
     });
   }
 
+  //gets code stored in user object in db
   async getCodeFromUser(){
     await this.userService.getUserByGmailId(this.currentUser).subscribe(res => {
       this.userWithCode = res;
     })
   }
 
+  //checks that the code the user entered matches the one stored in the db that was generated
   checkCode(){
     if(this.userWithCode.authenticationCode == this.code){
       this.authenticateUser();
+      this.userService.currentUser = this.currentUser;
       this.goToPage("student-rec")
       this.dialogRef.close();
     } else {
@@ -56,9 +63,10 @@ export class VerificationPopupComponent implements OnInit {
     }
   }
   
+  //method to set authentication to true for the user in the backend
   async authenticateUser(){
   
-    await this.userService.updateUserByGannonID(this.userWithCode.gannon_id ,this.userWithCode.gmail, this.userWithCode.userType, true).subscribe(res =>{
+    await this.userService.updateUserByGannonID(this.userWithCode.gannon_id ,this.userWithCode.gmail, this.userWithCode.userType, true, this.userWithCode.idNumber).subscribe(res =>{
     })
   }
 

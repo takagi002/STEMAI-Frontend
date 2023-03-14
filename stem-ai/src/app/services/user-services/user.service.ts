@@ -18,9 +18,8 @@ export class UserService {
   }
   constructor(private http: HttpClient) { }
 
-  getUsers() {
-    return this.http.get(`${this.uri}/user`);
-  }
+  //most of these are self explanatory
+
   getUserByGannonId(gannon_id: String) {
     return this.http.get(`${this.uri}/user/gannonID/${gannon_id}`);
   }
@@ -33,6 +32,7 @@ export class UserService {
     return this.http.get(`${this.uri}/user/exists/${gmail}`)
   }
 
+  //uses gannon id instead of gmail above to find if a user exists
   checkIfUserExistsGannonID(gannon_id: String) {
     return this.http.get(`${this.uri}/user/existsGannonID/${gannon_id}`)
   }
@@ -45,26 +45,30 @@ export class UserService {
     const newUser = {
       gmail: gmail,
       userType: "not set",
-      gannon_id: "not added"
+      gannon_id: "not added",
+      idNumber: 0
     }
     return this.http.post(`${this.uri}/user`, newUser, this.httpOptions);
   }
 
-  updateUserByGannonID(gannon_id: String, gmail: String, userType: String, authenticated: boolean){
+  updateUserByGannonID(gannon_id: String, gmail: String, userType: String, authenticated: boolean, idNumber: Number){
     const updatedUser = {
       gmail: gmail,
       userType: userType,
       gannon_id: gannon_id,
+      idNumber: idNumber,
       authenticated: authenticated
     }
     return this.http.patch(`${this.uri}/user/gmail/${gmail}`, updatedUser, this.httpOptions);
   }
 
-  sendCode(gannon_id: String, gmail: String, userType: String, authenticated: boolean){
+  //sends request to backend to send authentication code to users gannon email
+  sendCode(gannon_id: String, gmail: String, userType: String, authenticated: boolean, idNumber: Number){
     const user = {
       gmail: gmail,
       userType: userType,
       gannon_id: gannon_id,
+      idNumber: idNumber,
       authenticated: authenticated
     }
     return this.http.post(`${this.uri}/user/generateCode`, user, this.httpOptions);
