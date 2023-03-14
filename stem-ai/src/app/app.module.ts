@@ -32,6 +32,8 @@ import { VerificationPopupComponent } from './verification-popup/verification-po
 import { OnlynumberDirective } from './onlynumber.directive';
 import { WconlinePopupComponent } from './wconline-popup/wconline-popup.component';
 import { ProfessorClassesComponent } from './professor-classes/professor-classes.component';
+import { PredictionServiceService } from './services/prediction-service/prediction-service.service';
+import { UserService } from './services/user-services/user.service';
 import { ContactPageComponent } from './contact-page/contact-page.component';
 
 const routes: Routes = [
@@ -62,7 +64,7 @@ imports: [
                   FormsModule, MatDialogModule, MatSnackBarModule, BrowserAnimationsModule],
   declarations: [ AppComponent, LoginComponent, InfoComponent, StudentRecComponent, SettingComponent, VerificationPopupComponent, OnlynumberDirective, WconlinePopupComponent, ProfessorClassesComponent, ContactPageComponent ],
   bootstrap:    [ AppComponent ],
-  providers: [ ClassService ]
+  providers: [ ClassService, PredictionServiceService, UserService ]
 })
 
 export class AppModule { 

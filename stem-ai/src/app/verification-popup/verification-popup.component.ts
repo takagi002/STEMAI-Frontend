@@ -30,6 +30,7 @@ export class VerificationPopupComponent implements OnInit {
   }
 
   goToPage(pageName:string){
+    this.userService.currentUser = this.currentUser;
     this.router.navigate([`${pageName}`]);
   }
 
@@ -49,6 +50,7 @@ export class VerificationPopupComponent implements OnInit {
   checkCode(){
     if(this.userWithCode.authenticationCode == this.code){
       this.authenticateUser();
+      this.userService.currentUser = this.currentUser;
       this.goToPage("student-rec")
       this.dialogRef.close();
     } else {
@@ -58,7 +60,7 @@ export class VerificationPopupComponent implements OnInit {
   
   async authenticateUser(){
   
-    await this.userService.updateUserByGannonID(this.userWithCode.gannon_id ,this.userWithCode.gmail, this.userWithCode.userType, true).subscribe(res =>{
+    await this.userService.updateUserByGannonID(this.userWithCode.gannon_id ,this.userWithCode.gmail, this.userWithCode.userType, true, this.userWithCode.idNumber).subscribe(res =>{
     })
   }
 

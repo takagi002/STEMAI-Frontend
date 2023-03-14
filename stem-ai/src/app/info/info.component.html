@@ -17,7 +17,7 @@
                 <form >
                     <mat-form-field class="input">
                         <mat-label>ID Number</mat-label>
-                        <input matInput placeholder="Ex. 123456" >
+                        <input matInput placeholder="Ex. 123456" [(ngModel)]="idNumber" appOnlynumber name="idNumberLabel" maxlength="6">
                     </mat-form-field>
                 </form>
             </div>

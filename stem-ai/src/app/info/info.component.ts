@@ -23,6 +23,7 @@ export class InfoComponent implements OnInit {
   code: any;
   gannonID: any;
   exists: any
+  idNumber: any;
 
   
   constructor(private router: Router, private userService: UserService, public dialogRef: MatDialog, private zone: NgZone, private errorSnackBar: MatSnackBar) { }
@@ -33,6 +34,7 @@ export class InfoComponent implements OnInit {
     this.userService.currentUser = undefined;
   }
   goToPage(pageName:string){
+    this.userService.currentUser = this.currentUser;
     this.router.navigate([`${pageName}`]);
   }
 
@@ -52,14 +54,14 @@ export class InfoComponent implements OnInit {
   }
 
   async addProfessorUser(){
-      this.userService.updateUserByGannonID(this.gannonID, this.currentUser, "professor", false).subscribe(res => {})
-      this.userService.sendCode(this.gannonID, this.currentUser, "professor", false).subscribe(res => {})
+      this.userService.updateUserByGannonID(this.gannonID, this.currentUser, "professor", false, this.idNumber).subscribe(res => {})
+      this.userService.sendCode(this.gannonID, this.currentUser, "professor", false, this.idNumber).subscribe(res => {})
       this.openDialog();
 }
 
   async addStudentUser(){
-      this.userService.updateUserByGannonID(this.gannonID, this.currentUser, "student", false).subscribe(res => {})
-      this.userService.sendCode(this.gannonID, this.currentUser, "student", false).subscribe(res => {})
+      this.userService.updateUserByGannonID(this.gannonID, this.currentUser, "student", false, this.idNumber).subscribe(res => {})
+      this.userService.sendCode(this.gannonID, this.currentUser, "student", false, this.idNumber).subscribe(res => {})
       this.openDialog();
   }
 

@@ -1,11 +1,11 @@
 <div>
-    <mat-list *ngFor="let class of classes">
+    <mat-list *ngFor="let prediction of predictions">
         <mat-list-item>
             <mat-card class="card">
                 <div class="row">
                     <div class="row">
                         <mat-icon style="padding: 17px;">book</mat-icon>
-                        <p > {{class.department}}: {{class.course_id}}  </p>
+                        <p > {{prediction.name}}  </p>
                     </div>
                     <div class="row">
                         <button mat-raised-button class="button" disabled="false" (click)="openDialog()">WCOnline</button>
