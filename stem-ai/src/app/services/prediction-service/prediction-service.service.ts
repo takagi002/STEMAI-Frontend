@@ -11,14 +11,8 @@ export class PredictionServiceService {
 
   constructor(private http: HttpClient) { }
 
-  getStudentClasses() {
-    return this.http.get(`${this.uri}/prediction`);
-  }
 
-  getStudentPredictionByStudentId(id: String) {
-    return this.http.get(`${this.uri}/prediction/studentID/${id}`);
-  }
-
+  //gets all student predictions related to given student ID
   getAllStudentPredictionsByStudentId(id: String) {
     return this.http.get(`${this.uri}/prediction/studentIDAll/${id}`);
   }

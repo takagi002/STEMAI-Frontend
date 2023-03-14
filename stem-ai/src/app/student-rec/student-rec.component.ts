@@ -25,9 +25,11 @@ export class StudentRecComponent implements OnInit{
 
   ngOnInit() {
 
+    //get user from last page
     this.currentUser = this.userService.currentUser;
-    console.log("User: " + this.currentUser);
 
+    ///MMM yummy jumble code
+    //gets the full user info from gmail, then gets all the classes, then gets the predictions from the studentID, then gives the classes name
     this.userService.getUserByGmailId(this.currentUser).subscribe(res => {
       this.fullUser = res;
       console.log(this.fullUser)
@@ -46,6 +48,7 @@ export class StudentRecComponent implements OnInit{
 
   
   }
+  //this will open WConline popup that will redirect you there
   openDialog(){
     this.zone.run(() => {
       this.dialogRef.open(WconlinePopupComponent);
@@ -53,18 +56,9 @@ export class StudentRecComponent implements OnInit{
     
   }
 
-  async getClassNames(){
-    await this.classService.getClasses().subscribe(res=> {
-      this.classes = res;
-    })
-  }
+  
 
-  async getPredictions(){
-    await this.predictionService.getAllStudentPredictionsByStudentId(this.currentUser.student_id).subscribe(res => {
-      this.predictions = res;
-    })
-  }
-
+  //cross references the course ids in predictions and all the classes to get the name of the course
   addNamesToPredictions(predictions: any, classes: any){
     var name: any;
     predictions.forEach((pred: { course_id: String, student_id: String, prediction: Boolean, reason: String, name: String}) => {
@@ -72,7 +66,7 @@ export class StudentRecComponent implements OnInit{
       pred.name = name.course_name;
     });
 
-    console.log(this.predictions);
+    
   }
   
 }

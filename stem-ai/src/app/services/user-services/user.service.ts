@@ -18,9 +18,8 @@ export class UserService {
   }
   constructor(private http: HttpClient) { }
 
-  getUsers() {
-    return this.http.get(`${this.uri}/user`);
-  }
+  //most of these are self explanatory
+
   getUserByGannonId(gannon_id: String) {
     return this.http.get(`${this.uri}/user/gannonID/${gannon_id}`);
   }
@@ -33,6 +32,7 @@ export class UserService {
     return this.http.get(`${this.uri}/user/exists/${gmail}`)
   }
 
+  //uses gannon id instead of gmail above to find if a user exists
   checkIfUserExistsGannonID(gannon_id: String) {
     return this.http.get(`${this.uri}/user/existsGannonID/${gannon_id}`)
   }
@@ -62,6 +62,7 @@ export class UserService {
     return this.http.patch(`${this.uri}/user/gmail/${gmail}`, updatedUser, this.httpOptions);
   }
 
+  //sends request to backend to send authentication code to users gannon email
   sendCode(gannon_id: String, gmail: String, userType: String, authenticated: boolean, idNumber: Number){
     const user = {
       gmail: gmail,
