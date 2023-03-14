@@ -14,6 +14,7 @@ export class VerificationPopupComponent implements OnInit {
   code: any;
   currentUser: any;
   userWithCode: any;
+  userType: any;
 
   
 
@@ -24,6 +25,8 @@ export class VerificationPopupComponent implements OnInit {
     
     //getting user from previous page
     this.currentUser = this.userService.currentUser;
+    this.userType = this.userService.userType;
+    this.userService.userType = undefined;
     this.userService.currentUser = undefined;
 
     this.getCodeFromUser();
@@ -56,7 +59,12 @@ export class VerificationPopupComponent implements OnInit {
     if(this.userWithCode.authenticationCode == this.code){
       this.authenticateUser();
       this.userService.currentUser = this.currentUser;
-      this.goToPage("student-rec")
+      if(this.userType == "student"){
+        this.goToPage("student-rec")
+      } else if(this.userType == "professor"){
+        this.goToPage("professor-classes")
+      }
+      
       this.dialogRef.close();
     } else {
       this.openSnackBar();

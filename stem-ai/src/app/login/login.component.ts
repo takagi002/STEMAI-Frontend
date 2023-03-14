@@ -107,10 +107,19 @@ export class LoginComponent implements OnInit{
   //checks db to see if user authenticated, if they are go to student rec page if not go to info page
   async checkIfAuthenticated(gmail: String){
     var authenticated: any;
+    var user: any;
     await this.userService.checkIfUserAuthenticated(gmail).subscribe(res => {
       authenticated = res;
       if(authenticated){
-        this.goToPage('student-rec');
+         this.userService.getUserByGmailId(gmail).subscribe(res =>{
+          user = res;
+          if(user.userType === "student"){
+            this.goToPage('student-rec');
+          } else if(user.userType === "professor"){
+            this.goToPage('professor-classes');
+          }
+        })
+        
       } else {
         this.goToPage('info');
       }

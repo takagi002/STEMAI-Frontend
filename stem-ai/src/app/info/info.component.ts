@@ -61,6 +61,7 @@ export class InfoComponent implements OnInit {
   async addProfessorUser(){
       this.userService.updateUserByGannonID(this.gannonID, this.currentUser, "professor", false, this.idNumber).subscribe(res => {})
       this.userService.sendCode(this.gannonID, this.currentUser, "professor", false, this.idNumber).subscribe(res => {})
+      this.userService.userType = "professor";
       this.openDialog();
 }
 
@@ -68,6 +69,7 @@ export class InfoComponent implements OnInit {
   async addStudentUser(){
       this.userService.updateUserByGannonID(this.gannonID, this.currentUser, "student", false, this.idNumber).subscribe(res => {})
       this.userService.sendCode(this.gannonID, this.currentUser, "student", false, this.idNumber).subscribe(res => {})
+      this.userService.userType = "student";
       this.openDialog();
   }
 

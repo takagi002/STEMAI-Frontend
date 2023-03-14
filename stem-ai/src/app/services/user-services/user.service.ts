@@ -11,6 +11,8 @@ export class UserService {
 
   uri: String  = environment.backendURI;
   currentUser: any;
+  userType: any;
+  
   httpOptions = {
     headers: new HttpHeaders({ 
       'Access-Control-Allow-Origin':'*'
