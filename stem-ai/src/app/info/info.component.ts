@@ -23,19 +23,24 @@ export class InfoComponent implements OnInit {
   code: any;
   gannonID: any;
   exists: any
+  idNumber: any;
 
   
   constructor(private router: Router, private userService: UserService, public dialogRef: MatDialog, private zone: NgZone, private errorSnackBar: MatSnackBar) { }
 
-
+//gets user from previous page
   ngOnInit(): void {
     this.currentUser = this.userService.currentUser;
     this.userService.currentUser = undefined;
   }
+
+  //simple routing method
   goToPage(pageName:string){
+    this.userService.currentUser = this.currentUser;
     this.router.navigate([`${pageName}`]);
   }
 
+  //opens the verification popup
   openDialog(){
     this.userService.currentUser = this.currentUser;
     this.zone.run(() => {
@@ -44,6 +49,7 @@ export class InfoComponent implements OnInit {
     
   }
 
+  //opens an error snackbar to say gannon id already in use
   openSnackBar() {
     this.errorSnackBar.open("Gannon ID already in use", "Close",{
       horizontalPosition: "center",
@@ -51,18 +57,23 @@ export class InfoComponent implements OnInit {
     });
   }
 
+  //adds a professor user in db and opens dialof
   async addProfessorUser(){
-      this.userService.updateUserByGannonID(this.gannonID, this.currentUser, "professor", false).subscribe(res => {})
-      this.userService.sendCode(this.gannonID, this.currentUser, "professor", false).subscribe(res => {})
+      this.userService.updateUserByGannonID(this.gannonID, this.currentUser, "professor", false, this.idNumber).subscribe(res => {})
+      this.userService.sendCode(this.gannonID, this.currentUser, "professor", false, this.idNumber).subscribe(res => {})
+      this.userService.userType = "professor";
       this.openDialog();
 }
 
+  //adds a student user in db and opens dialof
   async addStudentUser(){
-      this.userService.updateUserByGannonID(this.gannonID, this.currentUser, "student", false).subscribe(res => {})
-      this.userService.sendCode(this.gannonID, this.currentUser, "student", false).subscribe(res => {})
+      this.userService.updateUserByGannonID(this.gannonID, this.currentUser, "student", false, this.idNumber).subscribe(res => {})
+      this.userService.sendCode(this.gannonID, this.currentUser, "student", false, this.idNumber).subscribe(res => {})
+      this.userService.userType = "student";
       this.openDialog();
   }
 
+  //checks backend to see if a gannon id is already in use
   async checkIfGannonIDExists(type: String){
     var exists: any
     await this.userService.checkIfUserExistsGannonID(this.gannonID).subscribe(res =>{

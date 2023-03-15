@@ -1,18 +1,25 @@
 <div>
-    <mat-list *ngFor="let class of classes">
+    <mat-list *ngFor="let prediction of predictions">
         <mat-list-item>
             <mat-card class="card">
                 <div class="row">
                     <div class="row">
                         <mat-icon style="padding: 17px;">book</mat-icon>
-                        <p > {{class.department}}: {{class.course_id}}  </p>
+                        <p > {{prediction.name}}  </p>
                     </div>
                     <div class="row">
-                        <button mat-raised-button class="button" disabled="false" (click)="openDialog()">WCOnline</button>
-                        <mat-checkbox style="padding: 9px;" disabled="true" checked="true"></mat-checkbox>
-                        <mat-icon style="padding: 17px; color: gray;" 
-                        matTooltip="Based on our machine learning algorithm, students with similar grades to
-                        you have improved a letter grade by getting tutoring for this class">help</mat-icon>
+                        <button mat-raised-button class="button" disabled={{!prediction.prediction}} (click)="openDialog()">WCOnline</button>
+                        <mat-checkbox style="padding: 9px;" disabled="true" checked={{prediction.prediction}}></mat-checkbox>
+                        <div *ngIf="prediction.prediction; else elseBlock">
+                            <mat-icon  style="padding: 17px; color: gray;" 
+                            matTooltip="Based on our machine learning algorithm, students with similar grades to
+                            you have improved a letter grade by getting tutoring for this class">help</mat-icon>
+                        </div>
+                        <ng-template #elseBlock>
+                            <mat-icon  style="padding: 17px; color: gray;" 
+                            matTooltip="Our machine learning algorithm does not recommend tutoring for this class for you.
+                            Tutoring could still be beneficial for you if you feel you are struggling.">help</mat-icon>
+                        </ng-template>
                     </div>
                 </div>
             </mat-card>

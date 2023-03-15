@@ -14,10 +14,5 @@ export class ClassService {
   getClasses() {
     return this.http.get(`${this.uri}/class`);
   }
-  getClassByClassId(id: String) {
-    return this.http.get(`${this.uri}/class/courseID/${id}`);
-  }
-  getClassByObjectId(id: String) {
-    return this.http.get(`${this.uri}/class/objectID/${id}`);
-  }
+  
 }

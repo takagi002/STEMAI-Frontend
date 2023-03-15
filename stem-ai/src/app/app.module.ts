@@ -32,6 +32,10 @@ import { VerificationPopupComponent } from './verification-popup/verification-po
 import { OnlynumberDirective } from './onlynumber.directive';
 import { WconlinePopupComponent } from './wconline-popup/wconline-popup.component';
 import { ProfessorClassesComponent } from './professor-classes/professor-classes.component';
+import { PredictionServiceService } from './services/prediction-service/prediction-service.service';
+import { UserService } from './services/user-services/user.service';
+import { ContactPageComponent } from './contact-page/contact-page.component';
+import { AboutPageComponent } from './about-page/about-page.component';
 
 const routes: Routes = [
   { path: 'info', component: InfoComponent },
@@ -43,7 +47,11 @@ const routes: Routes = [
   { path: 'setting', component: SettingComponent },
   { path: '', redirectTo: '/setting', pathMatch: 'full' },
   { path: 'professor-classes', component: ProfessorClassesComponent },
-  { path: '', redirectTo: '/professor-classes', pathMatch: 'full' }
+  { path: '', redirectTo: '/professor-classes', pathMatch: 'full' },
+  { path: 'contact-page', component: ContactPageComponent },
+  { path: '', redirectTo: '/contact-page', pathMatch: 'full' },
+  { path: 'about-page', component: AboutPageComponent },
+  { path: '', redirectTo: '/about-page', pathMatch: 'full' }
 ];
 
 imports: [
@@ -57,9 +65,9 @@ imports: [
                   MatFormFieldModule, MatInputModule, MatIconModule, MatButtonModule, MatToolbarModule, MatSlideToggleModule, 
                   MatCheckboxModule, MatCardModule, FlexLayoutModule, BrowserModule, RouterModule.forRoot(routes, { onSameUrlNavigation: 'reload' }), 
                   FormsModule, MatDialogModule, MatSnackBarModule, BrowserAnimationsModule],
-  declarations: [ AppComponent, LoginComponent, InfoComponent, StudentRecComponent, SettingComponent, VerificationPopupComponent, OnlynumberDirective, WconlinePopupComponent, ProfessorClassesComponent ],
+  declarations: [ AppComponent, LoginComponent, InfoComponent, StudentRecComponent, SettingComponent, VerificationPopupComponent, OnlynumberDirective, WconlinePopupComponent, ProfessorClassesComponent, ContactPageComponent, AboutPageComponent ],
   bootstrap:    [ AppComponent ],
-  providers: [ ClassService ]
+  providers: [ ClassService, PredictionServiceService, UserService ]
 })
 
 export class AppModule { 

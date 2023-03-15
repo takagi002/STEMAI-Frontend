@@ -14,6 +14,7 @@ export class VerificationPopupComponent implements OnInit {
   code: any;
   currentUser: any;
   userWithCode: any;
+  userType: any;
 
   
 
@@ -22,17 +23,23 @@ export class VerificationPopupComponent implements OnInit {
 
   ngOnInit(): void {
     
+    //getting user from previous page
     this.currentUser = this.userService.currentUser;
+    this.userType = this.userService.userType;
+    this.userService.userType = undefined;
     this.userService.currentUser = undefined;
 
     this.getCodeFromUser();
 
   }
 
+  //just a routing method
   goToPage(pageName:string){
+    this.userService.currentUser = this.currentUser;
     this.router.navigate([`${pageName}`]);
   }
 
+  //opens up a snackbar to show an incorrect code was entered
   openSnackBar() {
     this.errorSnackBar.open("Incorrect Authentication Code", "Close",{
       horizontalPosition: "center",
@@ -40,25 +47,34 @@ export class VerificationPopupComponent implements OnInit {
     });
   }
 
+  //gets code stored in user object in db
   async getCodeFromUser(){
     await this.userService.getUserByGmailId(this.currentUser).subscribe(res => {
       this.userWithCode = res;
     })
   }
 
+  //checks that the code the user entered matches the one stored in the db that was generated
   checkCode(){
     if(this.userWithCode.authenticationCode == this.code){
       this.authenticateUser();
-      this.goToPage("student-rec")
+      this.userService.currentUser = this.currentUser;
+      if(this.userType == "student"){
+        this.goToPage("student-rec")
+      } else if(this.userType == "professor"){
+        this.goToPage("professor-classes")
+      }
+      
       this.dialogRef.close();
     } else {
       this.openSnackBar();
     }
   }
   
+  //method to set authentication to true for the user in the backend
   async authenticateUser(){
   
-    await this.userService.updateUserByGannonID(this.userWithCode.gannon_id ,this.userWithCode.gmail, this.userWithCode.userType, true).subscribe(res =>{
+    await this.userService.updateUserByGannonID(this.userWithCode.gannon_id ,this.userWithCode.gmail, this.userWithCode.userType, true, this.userWithCode.idNumber).subscribe(res =>{
     })
   }
 

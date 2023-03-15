@@ -81,12 +81,14 @@ export class LoginComponent implements OnInit{
   }
 
 
+  //adds a new user
   async addNewUser(gmail: String) {
     this.userService.addUser(gmail).subscribe(res => {
       this.user = res;
     }) 
   }
 
+  //checks db to see if user already exists then if they don't adds a new user and if they do checks if the user is authenticated
   async checkUserExists(gmail: String) {
     var exists: any;
     await this.userService.checkIfUserExists(gmail).subscribe(res => {
@@ -102,12 +104,22 @@ export class LoginComponent implements OnInit{
     
   }
 
+  //checks db to see if user authenticated, if they are go to student rec page if not go to info page
   async checkIfAuthenticated(gmail: String){
     var authenticated: any;
+    var user: any;
     await this.userService.checkIfUserAuthenticated(gmail).subscribe(res => {
       authenticated = res;
       if(authenticated){
-        this.goToPage('student-rec');
+         this.userService.getUserByGmailId(gmail).subscribe(res =>{
+          user = res;
+          if(user.userType === "student"){
+            this.goToPage('student-rec');
+          } else if(user.userType === "professor"){
+            this.goToPage('professor-classes');
+          }
+        })
+        
       } else {
         this.goToPage('info');
       }
