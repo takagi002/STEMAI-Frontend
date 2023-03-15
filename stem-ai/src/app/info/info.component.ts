@@ -4,6 +4,7 @@ import { UserService } from '../services/user-services/user.service';
 import {MatDialog, MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
 import { VerificationPopupComponent } from '../verification-popup/verification-popup.component';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { SharingService } from '../services/sharing-service/sharing.service';
 
 export interface DialogData {
   code: any;
@@ -26,23 +27,20 @@ export class InfoComponent implements OnInit {
   idNumber: any;
 
   
-  constructor(private router: Router, private userService: UserService, public dialogRef: MatDialog, private zone: NgZone, private errorSnackBar: MatSnackBar) { }
+  constructor(private router: Router, private userService: UserService, public dialogRef: MatDialog, private zone: NgZone, private errorSnackBar: MatSnackBar, private sharingService: SharingService) { }
 
 //gets user from previous page
   ngOnInit(): void {
-    this.currentUser = this.userService.currentUser;
-    this.userService.currentUser = undefined;
+    this.currentUser = this.sharingService.getCurrentUser();
   }
 
   //simple routing method
   goToPage(pageName:string){
-    this.userService.currentUser = this.currentUser;
     this.router.navigate([`${pageName}`]);
   }
 
   //opens the verification popup
   openDialog(){
-    this.userService.currentUser = this.currentUser;
     this.zone.run(() => {
       this.dialogRef.open(VerificationPopupComponent);
     })
@@ -61,7 +59,7 @@ export class InfoComponent implements OnInit {
   async addProfessorUser(){
       this.userService.updateUserByGannonID(this.gannonID, this.currentUser, "professor", false, this.idNumber).subscribe(res => {})
       this.userService.sendCode(this.gannonID, this.currentUser, "professor", false, this.idNumber).subscribe(res => {})
-      this.userService.userType = "professor";
+      this.sharingService.setUserType("professor");
       this.openDialog();
 }
 
@@ -69,7 +67,7 @@ export class InfoComponent implements OnInit {
   async addStudentUser(){
       this.userService.updateUserByGannonID(this.gannonID, this.currentUser, "student", false, this.idNumber).subscribe(res => {})
       this.userService.sendCode(this.gannonID, this.currentUser, "student", false, this.idNumber).subscribe(res => {})
-      this.userService.userType = "student";
+      this.sharingService.setUserType("student");
       this.openDialog();
   }
 

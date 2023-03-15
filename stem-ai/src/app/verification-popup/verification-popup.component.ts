@@ -3,6 +3,7 @@ import { MatDialogRef } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { UserService } from '../services/user-services/user.service';
 import {MatSnackBar} from '@angular/material/snack-bar';
+import { SharingService } from '../services/sharing-service/sharing.service';
 
 
 @Component({
@@ -19,23 +20,22 @@ export class VerificationPopupComponent implements OnInit {
   
 
   
-  constructor(private userService: UserService, private router: Router, public dialogRef: MatDialogRef<VerificationPopupComponent>, private errorSnackBar: MatSnackBar) {}
+  constructor(private userService: UserService, private router: Router, public dialogRef: MatDialogRef<VerificationPopupComponent>, private errorSnackBar: MatSnackBar, private sharingService:SharingService) {}
 
   ngOnInit(): void {
     
     //getting user from previous page
-    this.currentUser = this.userService.currentUser;
-    this.userType = this.userService.userType;
-    this.userService.userType = undefined;
-    this.userService.currentUser = undefined;
-
+    this.currentUser = this.sharingService.getCurrentUser();
+    this.userType = this.sharingService.getUserType();
+    
+    console.log(this.currentUser)
+    console.log(this.userType)
     this.getCodeFromUser();
 
   }
 
   //just a routing method
   goToPage(pageName:string){
-    this.userService.currentUser = this.currentUser;
     this.router.navigate([`${pageName}`]);
   }
 
@@ -58,7 +58,6 @@ export class VerificationPopupComponent implements OnInit {
   checkCode(){
     if(this.userWithCode.authenticationCode == this.code){
       this.authenticateUser();
-      this.userService.currentUser = this.currentUser;
       if(this.userType == "student"){
         this.goToPage("student-rec")
       } else if(this.userType == "professor"){

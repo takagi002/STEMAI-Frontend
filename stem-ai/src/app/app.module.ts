@@ -36,6 +36,7 @@ import { PredictionServiceService } from './services/prediction-service/predicti
 import { UserService } from './services/user-services/user.service';
 import { ContactPageComponent } from './contact-page/contact-page.component';
 import { AboutPageComponent } from './about-page/about-page.component';
+import { SharingService } from './services/sharing-service/sharing.service';
 
 const routes: Routes = [
   { path: 'info', component: InfoComponent },
@@ -67,7 +68,7 @@ imports: [
                   FormsModule, MatDialogModule, MatSnackBarModule, BrowserAnimationsModule],
   declarations: [ AppComponent, LoginComponent, InfoComponent, StudentRecComponent, SettingComponent, VerificationPopupComponent, OnlynumberDirective, WconlinePopupComponent, ProfessorClassesComponent, ContactPageComponent, AboutPageComponent ],
   bootstrap:    [ AppComponent ],
-  providers: [ ClassService, PredictionServiceService, UserService ]
+  providers: [ ClassService, PredictionServiceService, UserService, SharingService ]
 })
 
 export class AppModule { 

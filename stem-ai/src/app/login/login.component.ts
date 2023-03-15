@@ -5,6 +5,7 @@ import { ElementRef } from '@angular/core';
 import { environment } from 'src/environment';
 import {Router} from '@angular/router';
 import { UserService } from '../services/user-services/user.service';
+import { SharingService } from '../services/sharing-service/sharing.service';
 
 
 @Component({
@@ -20,10 +21,9 @@ export class LoginComponent implements OnInit{
   auth2: any;
   currentUser: any;
   @ViewChild('loginRef', { static: true }) loginElement!: ElementRef;
-  constructor(private router: Router, private userService: UserService) { }
+  constructor(private router: Router, private userService: UserService, private sharingService: SharingService) { }
   goToPage(pageName:string){
-    this.userService.currentUser = this.currentUser;
-    console.log("Login: " + this.userService.currentUser);
+    this.sharingService.setCurrentUser(this.currentUser);
     this.router.navigate([`${pageName}`]);
   }
   ngOnInit() {

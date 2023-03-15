@@ -5,6 +5,7 @@ import { WconlinePopupComponent } from '../wconline-popup/wconline-popup.compone
 import { UserService } from '../services/user-services/user.service';
 import { PredictionServiceService } from '../services/prediction-service/prediction-service.service';
 import { ClassService } from '../services/class-service/class.service';
+import { SharingService } from '../services/sharing-service/sharing.service';
 
 export interface DialogData {
   code: any;
@@ -16,7 +17,7 @@ export interface DialogData {
   styleUrls: ['./student-rec.component.css']
 })
 export class StudentRecComponent implements OnInit{
-  constructor(private userService: UserService, public dialogRef: MatDialog,private zone: NgZone, private predictionService: PredictionServiceService, private classService: ClassService) {}
+  constructor(private userService: UserService, public dialogRef: MatDialog,private zone: NgZone, private predictionService: PredictionServiceService, private classService: ClassService, private sharingService: SharingService) {}
 
   predictions: any = [];
   currentUser: any;
@@ -26,7 +27,7 @@ export class StudentRecComponent implements OnInit{
   ngOnInit() {
 
     //get user from last page
-    this.currentUser = this.userService.currentUser;
+    this.currentUser = this.sharingService.getCurrentUser();
 
     ///MMM yummy jumble code
     //gets the full user info from gmail, then gets all the classes, then gets the predictions from the studentID, then gives the classes name
@@ -42,9 +43,7 @@ export class StudentRecComponent implements OnInit{
       })
     })
 
-    this.userService.currentUser = undefined;
 
-    
 
   
   }
