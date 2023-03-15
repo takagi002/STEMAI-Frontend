@@ -24,14 +24,20 @@
     height:30%;
 }
 
-.button-bot{
-    width:25%;
-    font-size: 15px; 
+.center{
+    display: flex;
+    margin-top: 20px;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    margin-top:1.25rem;
+    padding: 15px;
+
 }
 
-.row{
-    display: flex;
-    justify-content: space-evenly;
-    flex-wrap: wrap;
-    padding: 20px;
+.but{
+    width: 20%;
+    font-size: 20px;
+    -webkit-text-fill-color: red;
 }
