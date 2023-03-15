@@ -8,7 +8,7 @@
                         <p > {{prediction.name}}  </p>
                     </div>
                     <div class="row">
-                        <button mat-raised-button class="button" disabled="false" (click)="openDialog()">WCOnline</button>
+                        <button mat-raised-button class="button" disabled={{!prediction.prediction}} (click)="openDialog()">WCOnline</button>
                         <mat-checkbox style="padding: 9px;" disabled="true" checked={{prediction.prediction}}></mat-checkbox>
                         <div *ngIf="prediction.prediction; else elseBlock">
                             <mat-icon  style="padding: 17px; color: gray;" 
