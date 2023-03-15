@@ -6,6 +6,7 @@ import { UserService } from '../services/user-services/user.service';
 import { PredictionServiceService } from '../services/prediction-service/prediction-service.service';
 import { ClassService } from '../services/class-service/class.service';
 import { SharingService } from '../services/sharing-service/sharing.service';
+import { Router } from '@angular/router';
 
 export interface DialogData {
   code: any;
@@ -17,18 +18,26 @@ export interface DialogData {
   styleUrls: ['./student-rec.component.css']
 })
 export class StudentRecComponent implements OnInit{
-  constructor(private userService: UserService, public dialogRef: MatDialog,private zone: NgZone, private predictionService: PredictionServiceService, private classService: ClassService, private sharingService: SharingService) {}
+  constructor(private userService: UserService, public dialogRef: MatDialog,private zone: NgZone, private predictionService: PredictionServiceService, private classService: ClassService, private sharingService: SharingService, private router: Router) {}
 
   predictions: any = [];
   currentUser: any;
   classes: any = [];
   fullUser: any;
 
+  goToPage(pageName:string){
+    this.sharingService.setCurrentUser(this.currentUser);
+    this.router.navigate([`${pageName}`]);
+  }
+
   ngOnInit() {
 
     //get user from last page
     this.currentUser = this.sharingService.getCurrentUser();
 
+    if(Object.keys(this.currentUser).length === 0){
+      this.goToPage("login")
+    }
     ///MMM yummy jumble code
     //gets the full user info from gmail, then gets all the classes, then gets the predictions from the studentID, then gives the classes name
     this.userService.getUserByGmailId(this.currentUser).subscribe(res => {

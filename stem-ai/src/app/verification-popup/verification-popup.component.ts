@@ -28,8 +28,6 @@ export class VerificationPopupComponent implements OnInit {
     this.currentUser = this.sharingService.getCurrentUser();
     this.userType = this.sharingService.getUserType();
     
-    console.log(this.currentUser)
-    console.log(this.userType)
     this.getCodeFromUser();
 
   }

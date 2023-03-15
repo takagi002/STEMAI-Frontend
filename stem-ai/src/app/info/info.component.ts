@@ -32,6 +32,11 @@ export class InfoComponent implements OnInit {
 //gets user from previous page
   ngOnInit(): void {
     this.currentUser = this.sharingService.getCurrentUser();
+
+    if(Object.keys(this.currentUser).length === 0){
+      this.goToPage("login")
+    }
+    
   }
 
   //simple routing method

@@ -39,11 +39,12 @@ export class LoginComponent implements OnInit{
         //Print profile details in the console logs
 
         let profile = googleAuthUser.getBasicProfile();
-        console.log('Token || ' + googleAuthUser.getAuthResponse().id_token);
-        console.log('ID: ' + profile.getId());
-        console.log('Name: ' + profile.getName());
-        console.log('Image URL: ' + profile.getImageUrl());
-        console.log('Email: ' + profile.getEmail());
+        
+        // console.log('Token || ' + googleAuthUser.getAuthResponse().id_token);
+        // console.log('ID: ' + profile.getId());
+        // console.log('Name: ' + profile.getName());
+        // console.log('Image URL: ' + profile.getImageUrl());
+        // console.log('Email: ' + profile.getEmail());
 
         this.currentUser = profile.getEmail();
         this.checkUserExists(profile.getEmail());
