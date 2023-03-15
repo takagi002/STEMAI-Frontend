@@ -35,6 +35,7 @@ import { ProfessorClassesComponent } from './professor-classes/professor-classes
 import { PredictionServiceService } from './services/prediction-service/prediction-service.service';
 import { UserService } from './services/user-services/user.service';
 import { ContactPageComponent } from './contact-page/contact-page.component';
+import { AboutPageComponent } from './about-page/about-page.component';
 
 const routes: Routes = [
   { path: 'info', component: InfoComponent },
@@ -48,7 +49,9 @@ const routes: Routes = [
   { path: 'professor-classes', component: ProfessorClassesComponent },
   { path: '', redirectTo: '/professor-classes', pathMatch: 'full' },
   { path: 'contact-page', component: ContactPageComponent },
-  { path: '', redirectTo: '/contact-page', pathMatch: 'full' }
+  { path: '', redirectTo: '/contact-page', pathMatch: 'full' },
+  { path: 'about-page', component: AboutPageComponent },
+  { path: '', redirectTo: '/about-page', pathMatch: 'full' }
 ];
 
 imports: [
@@ -62,7 +65,7 @@ imports: [
                   MatFormFieldModule, MatInputModule, MatIconModule, MatButtonModule, MatToolbarModule, MatSlideToggleModule, 
                   MatCheckboxModule, MatCardModule, FlexLayoutModule, BrowserModule, RouterModule.forRoot(routes), 
                   FormsModule, MatDialogModule, MatSnackBarModule, BrowserAnimationsModule],
-  declarations: [ AppComponent, LoginComponent, InfoComponent, StudentRecComponent, SettingComponent, VerificationPopupComponent, OnlynumberDirective, WconlinePopupComponent, ProfessorClassesComponent, ContactPageComponent ],
+  declarations: [ AppComponent, LoginComponent, InfoComponent, StudentRecComponent, SettingComponent, VerificationPopupComponent, OnlynumberDirective, WconlinePopupComponent, ProfessorClassesComponent, ContactPageComponent, AboutPageComponent ],
   bootstrap:    [ AppComponent ],
   providers: [ ClassService, PredictionServiceService, UserService ]
 })
