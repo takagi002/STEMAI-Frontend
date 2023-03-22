@@ -38,6 +38,7 @@ import { ContactPageComponent } from './contact-page/contact-page.component';
 import { AboutPageComponent } from './about-page/about-page.component';
 import { SharingService } from './services/sharing-service/sharing.service';
 import { HomePageComponent } from './home-page/home-page.component';
+import { TeamPageComponent } from './team-page/team-page.component';
 
 const routes: Routes = [
   { path: 'info', component: InfoComponent },
@@ -55,7 +56,9 @@ const routes: Routes = [
   { path: 'about-page', component: AboutPageComponent },
   { path: '', redirectTo: '/about-page', pathMatch: 'full' },
   { path: 'home-page', component: HomePageComponent },
-  { path: '', redirectTo: '/home-page', pathMatch: 'full' }
+  { path: '', redirectTo: '/home-page', pathMatch: 'full' },
+  { path: 'team-page', component: TeamPageComponent },
+  { path: '', redirectTo: '/team-page', pathMatch: 'full' }
 ];
 
 imports: [
@@ -69,7 +72,7 @@ imports: [
                   MatFormFieldModule, MatInputModule, MatIconModule, MatButtonModule, MatToolbarModule, MatSlideToggleModule, 
                   MatCheckboxModule, MatCardModule, FlexLayoutModule, BrowserModule, RouterModule.forRoot(routes), 
                   FormsModule, MatDialogModule, MatSnackBarModule, BrowserAnimationsModule],
-  declarations: [ AppComponent, LoginComponent, InfoComponent, StudentRecComponent, SettingComponent, VerificationPopupComponent, OnlynumberDirective, WconlinePopupComponent, ProfessorClassesComponent, ContactPageComponent, AboutPageComponent, HomePageComponent ],
+  declarations: [ AppComponent, LoginComponent, InfoComponent, StudentRecComponent, SettingComponent, VerificationPopupComponent, OnlynumberDirective, WconlinePopupComponent, ProfessorClassesComponent, ContactPageComponent, AboutPageComponent, HomePageComponent, TeamPageComponent ],
   bootstrap:    [ AppComponent ],
   providers: [ ClassService, PredictionServiceService, UserService, SharingService ]
 })
