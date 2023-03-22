@@ -40,6 +40,7 @@ import { SharingService } from './services/sharing-service/sharing.service';
 import { HomePageComponent } from './home-page/home-page.component';
 import { TeamPageComponent } from './team-page/team-page.component';
 import { ProfessorStudentsComponent } from './professor-students/professor-students.component';
+import { DeleteUserPopupComponent } from './delete-user-popup/delete-user-popup.component';
 
 const routes: Routes = [
   { path: 'info', component: InfoComponent },
@@ -75,7 +76,7 @@ imports: [
                   MatFormFieldModule, MatInputModule, MatIconModule, MatButtonModule, MatToolbarModule, MatSlideToggleModule, 
                   MatCheckboxModule, MatCardModule, FlexLayoutModule, BrowserModule, RouterModule.forRoot(routes), 
                   FormsModule, MatDialogModule, MatSnackBarModule, BrowserAnimationsModule],
-  declarations: [ AppComponent, LoginComponent, InfoComponent, StudentRecComponent, SettingComponent, VerificationPopupComponent, OnlynumberDirective, WconlinePopupComponent, ProfessorClassesComponent, ContactPageComponent, AboutPageComponent, HomePageComponent, TeamPageComponent, ProfessorStudentsComponent ],
+  declarations: [ AppComponent, LoginComponent, InfoComponent, StudentRecComponent, SettingComponent, VerificationPopupComponent, OnlynumberDirective, WconlinePopupComponent, ProfessorClassesComponent, ContactPageComponent, AboutPageComponent, HomePageComponent, TeamPageComponent, ProfessorStudentsComponent, DeleteUserPopupComponent ],
   bootstrap:    [ AppComponent ],
   providers: [ ClassService, PredictionServiceService, UserService, SharingService ]
 })

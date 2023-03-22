@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, NgZone, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
+import { DeleteUserPopupComponent } from '../delete-user-popup/delete-user-popup.component';
 import { SharingService } from '../services/sharing-service/sharing.service';
 import { UserService } from '../services/user-services/user.service';
 
@@ -14,7 +16,7 @@ export class SettingComponent {
   fullUser: any;
   checked: any;
 
-  constructor(private sharingService: SharingService, private router: Router, private userService: UserService) {}
+  constructor(private sharingService: SharingService, private router: Router, private userService: UserService, public dialogRef: MatDialog, private zone: NgZone,) {}
 
   ngOnInit(){
 
@@ -44,4 +46,11 @@ export class SettingComponent {
       
     })
   }
+
+  openDialog(){
+    this.zone.run(() => {
+      this.dialogRef.open(DeleteUserPopupComponent);
+    })
+  }
+
 }

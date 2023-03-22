@@ -89,4 +89,8 @@ export class UserService {
     }
     return this.http.post(`${this.uri}/user/notification`, updatedUser, this.httpOptions);
   }
+
+  deleteUserByGannonID(gmail: String){
+    return this.http.delete(`${this.uri}/user/gmail/${gmail}`);
+  }
 }
