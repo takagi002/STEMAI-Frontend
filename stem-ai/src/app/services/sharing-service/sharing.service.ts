@@ -7,6 +7,12 @@ export class SharingService {
 
   currentUser: string = "currentUser";
   userType: string = "userType";
+  gannon_id: string = "gannon_id";
+  idNumber: string = "idNumber";
+  authenticated: string = "authenticated";
+  authenticationCode : string = "authenticationCode";
+  notifications: string = "notifications"
+
 
   constructor() { }
 
@@ -38,5 +44,70 @@ export class SharingService {
 
   cleanAll() {
     localStorage.clear()
+  }
+
+  setGannonID(data: any){
+    localStorage.setItem(this.gannon_id, JSON.stringify(data));
+  }
+
+  getGannonID() {
+    let data = localStorage.getItem(this.gannon_id);
+    return JSON.parse(data || '{}');
+  }
+
+  clearGannonID() {
+    localStorage.removeItem(this.gannon_id);
+  }
+
+  setIDNumber(data: any){
+    localStorage.setItem(this.idNumber, JSON.stringify(data));
+  }
+
+  getIDNumber() {
+    let data = localStorage.getItem(this.idNumber);
+    return JSON.parse(data || '{}');
+  }
+
+  clearIDNumber() {
+    localStorage.removeItem(this.idNumber);
+  }
+
+  setAuthenticationCode(data: any){
+    localStorage.setItem(this.authenticationCode, JSON.stringify(data));
+  }
+
+  getAuthenticationCode() {
+    let data = localStorage.getItem(this.authenticationCode);
+    return JSON.parse(data || '{}');
+  }
+
+  clearAuthenticationCode() {
+    localStorage.removeItem(this.authenticationCode);
+  }
+
+  setAuthenticated(data: any){
+    localStorage.setItem(this.authenticated, JSON.stringify(data));
+  }
+
+  getAuthenticated() {
+    let data = localStorage.getItem(this.authenticated);
+    return JSON.parse(data || '{}');
+  }
+
+  clearAuthenticated() {
+    localStorage.removeItem(this.authenticated);
+  }
+
+  setNotifications(data: any){
+    localStorage.setItem(this.notifications, JSON.stringify(data));
+  }
+
+  getNotifications() {
+    let data = localStorage.getItem(this.notifications);
+    return JSON.parse(data || '{}');
+  }
+
+  clearNotifications() {
+    localStorage.removeItem(this.notifications);
   }
 }

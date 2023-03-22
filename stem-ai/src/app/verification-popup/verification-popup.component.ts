@@ -71,7 +71,7 @@ export class VerificationPopupComponent implements OnInit {
   //method to set authentication to true for the user in the backend
   async authenticateUser(){
   
-    await this.userService.updateUserByGannonID(this.userWithCode.gannon_id ,this.userWithCode.gmail, this.userWithCode.userType, true, this.userWithCode.idNumber).subscribe(res =>{
+    await this.userService.updateUserByGmail(this.userWithCode.gannon_id ,this.userWithCode.gmail, this.userWithCode.userType, true, this.userWithCode.idNumber, true).subscribe(res =>{
     })
   }
 

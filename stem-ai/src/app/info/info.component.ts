@@ -62,17 +62,21 @@ export class InfoComponent implements OnInit {
 
   //adds a professor user in db and opens dialof
   async addProfessorUser(){
-      this.userService.updateUserByGannonID(this.gannonID, this.currentUser, "professor", false, this.idNumber).subscribe(res => {})
-      this.userService.sendCode(this.gannonID, this.currentUser, "professor", false, this.idNumber).subscribe(res => {})
+      this.userService.updateUserByGmail(this.gannonID, this.currentUser, "professor", false, this.idNumber, true).subscribe(res => {})
+      this.userService.sendCode(this.gannonID, this.currentUser, "professor", false, this.idNumber, true).subscribe(res => {})
       this.sharingService.setUserType("professor");
+      this.sharingService.setIDNumber(this.idNumber);
+      this.sharingService.setNotifications("true");
       this.openDialog();
 }
 
   //adds a student user in db and opens dialof
   async addStudentUser(){
-      this.userService.updateUserByGannonID(this.gannonID, this.currentUser, "student", false, this.idNumber).subscribe(res => {})
-      this.userService.sendCode(this.gannonID, this.currentUser, "student", false, this.idNumber).subscribe(res => {})
+      this.userService.updateUserByGmail(this.gannonID, this.currentUser, "student", false, this.idNumber, true).subscribe(res => {})
+      this.userService.sendCode(this.gannonID, this.currentUser, "student", false, this.idNumber, true).subscribe(res => {})
       this.sharingService.setUserType("student");
+      this.sharingService.setIDNumber(this.idNumber);
+      this.sharingService.setNotifications("true");
       this.openDialog();
   }
 
@@ -94,6 +98,7 @@ export class InfoComponent implements OnInit {
     
     
   }
+
 
 }
 
