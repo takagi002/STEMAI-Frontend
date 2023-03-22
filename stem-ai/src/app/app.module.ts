@@ -39,6 +39,7 @@ import { AboutPageComponent } from './about-page/about-page.component';
 import { SharingService } from './services/sharing-service/sharing.service';
 import { HomePageComponent } from './home-page/home-page.component';
 import { TeamPageComponent } from './team-page/team-page.component';
+import { ProfessorStudentsComponent } from './professor-students/professor-students.component';
 
 const routes: Routes = [
   { path: 'info', component: InfoComponent },
@@ -47,8 +48,8 @@ const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
   { path: 'student-rec', component: StudentRecComponent },
   { path: '', redirectTo: '/student-rec', pathMatch: 'full' },
-  { path: 'setting', component: SettingComponent },
-  { path: '', redirectTo: '/setting', pathMatch: 'full' },
+  { path: 'settings', component: SettingComponent },
+  { path: '', redirectTo: '/settings', pathMatch: 'full' },
   { path: 'professor-classes', component: ProfessorClassesComponent },
   { path: '', redirectTo: '/professor-classes', pathMatch: 'full' },
   { path: 'contact-page', component: ContactPageComponent },
@@ -58,7 +59,9 @@ const routes: Routes = [
   { path: 'home-page', component: HomePageComponent },
   { path: '', redirectTo: '/home-page', pathMatch: 'full' },
   { path: 'team-page', component: TeamPageComponent },
-  { path: '', redirectTo: '/team-page', pathMatch: 'full' }
+  { path: '', redirectTo: '/team-page', pathMatch: 'full' },
+  { path: 'professor-students', component: ProfessorStudentsComponent },
+  { path: '', redirectTo: '/professor-students', pathMatch: 'full' }
 ];
 
 imports: [
@@ -72,7 +75,7 @@ imports: [
                   MatFormFieldModule, MatInputModule, MatIconModule, MatButtonModule, MatToolbarModule, MatSlideToggleModule, 
                   MatCheckboxModule, MatCardModule, FlexLayoutModule, BrowserModule, RouterModule.forRoot(routes), 
                   FormsModule, MatDialogModule, MatSnackBarModule, BrowserAnimationsModule],
-  declarations: [ AppComponent, LoginComponent, InfoComponent, StudentRecComponent, SettingComponent, VerificationPopupComponent, OnlynumberDirective, WconlinePopupComponent, ProfessorClassesComponent, ContactPageComponent, AboutPageComponent, HomePageComponent, TeamPageComponent ],
+  declarations: [ AppComponent, LoginComponent, InfoComponent, StudentRecComponent, SettingComponent, VerificationPopupComponent, OnlynumberDirective, WconlinePopupComponent, ProfessorClassesComponent, ContactPageComponent, AboutPageComponent, HomePageComponent, TeamPageComponent, ProfessorStudentsComponent ],
   bootstrap:    [ AppComponent ],
   providers: [ ClassService, PredictionServiceService, UserService, SharingService ]
 })
