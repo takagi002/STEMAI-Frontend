@@ -1,0 +1,15 @@
+.row{
+    display: flex;
+    justify-content: space-evenly;
+    margin: 20px;
+    text-align: center;
+}
+
+.image{
+    width: 50%;
+    height: 50%;
+}
+
+.letters{
+    font-size: large;
+}
