@@ -1,0 +1,27 @@
+.title{
+    text-align: center;
+}
+
+.row{
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    padding: 20px;
+}
+
+.center{
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    margin-top:1.25rem;
+    padding: 15px;
+}
+
+.icon{
+    font-size: 2rem;width:2rem;height:2rem;
+}
+
+.page{
+    height: 100%;
+}

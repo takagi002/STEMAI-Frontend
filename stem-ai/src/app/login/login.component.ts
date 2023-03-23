@@ -5,6 +5,7 @@ import { ElementRef } from '@angular/core';
 import { environment } from 'src/environment';
 import {Router} from '@angular/router';
 import { UserService } from '../services/user-services/user.service';
+import { SharingService } from '../services/sharing-service/sharing.service';
 
 
 @Component({
@@ -20,10 +21,9 @@ export class LoginComponent implements OnInit{
   auth2: any;
   currentUser: any;
   @ViewChild('loginRef', { static: true }) loginElement!: ElementRef;
-  constructor(private router: Router, private userService: UserService) { }
+  constructor(private router: Router, private userService: UserService, private sharingService: SharingService) { }
   goToPage(pageName:string){
-    this.userService.currentUser = this.currentUser;
-    console.log("Login: " + this.userService.currentUser);
+    this.sharingService.setCurrentUser(this.currentUser);
     this.router.navigate([`${pageName}`]);
   }
   ngOnInit() {
@@ -39,11 +39,12 @@ export class LoginComponent implements OnInit{
         //Print profile details in the console logs
 
         let profile = googleAuthUser.getBasicProfile();
-        console.log('Token || ' + googleAuthUser.getAuthResponse().id_token);
-        console.log('ID: ' + profile.getId());
-        console.log('Name: ' + profile.getName());
-        console.log('Image URL: ' + profile.getImageUrl());
-        console.log('Email: ' + profile.getEmail());
+        
+        // console.log('Token || ' + googleAuthUser.getAuthResponse().id_token);
+        // console.log('ID: ' + profile.getId());
+        // console.log('Name: ' + profile.getName());
+        // console.log('Image URL: ' + profile.getImageUrl());
+        // console.log('Email: ' + profile.getEmail());
 
         this.currentUser = profile.getEmail();
         this.checkUserExists(profile.getEmail());
@@ -107,10 +108,19 @@ export class LoginComponent implements OnInit{
   //checks db to see if user authenticated, if they are go to student rec page if not go to info page
   async checkIfAuthenticated(gmail: String){
     var authenticated: any;
+    var user: any;
     await this.userService.checkIfUserAuthenticated(gmail).subscribe(res => {
       authenticated = res;
       if(authenticated){
-        this.goToPage('student-rec');
+         this.userService.getUserByGmailId(gmail).subscribe(res =>{
+          user = res;
+          if(user.userType === "student"){
+            this.goToPage('student-rec');
+          } else if(user.userType === "professor"){
+            this.goToPage('professor-classes');
+          }
+        })
+        
       } else {
         this.goToPage('info');
       }

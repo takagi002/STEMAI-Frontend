@@ -10,7 +10,8 @@ import { environment } from 'src/environment';
 export class UserService {
 
   uri: String  = environment.backendURI;
-  currentUser: any;
+  
+  
   httpOptions = {
     headers: new HttpHeaders({ 
       'Access-Control-Allow-Origin':'*'
@@ -51,26 +52,45 @@ export class UserService {
     return this.http.post(`${this.uri}/user`, newUser, this.httpOptions);
   }
 
-  updateUserByGannonID(gannon_id: String, gmail: String, userType: String, authenticated: boolean, idNumber: Number){
+  updateUserByGmail(gannon_id: String, gmail: String, userType: String, authenticated: boolean, idNumber: Number, notifications: boolean){
     const updatedUser = {
       gmail: gmail,
       userType: userType,
       gannon_id: gannon_id,
       idNumber: idNumber,
-      authenticated: authenticated
+      authenticated: authenticated,
+      notifications: notifications
     }
     return this.http.patch(`${this.uri}/user/gmail/${gmail}`, updatedUser, this.httpOptions);
   }
 
   //sends request to backend to send authentication code to users gannon email
-  sendCode(gannon_id: String, gmail: String, userType: String, authenticated: boolean, idNumber: Number){
+  sendCode(gannon_id: String, gmail: String, userType: String, authenticated: boolean, idNumber: Number, notifications: boolean){
     const user = {
       gmail: gmail,
       userType: userType,
       gannon_id: gannon_id,
       idNumber: idNumber,
-      authenticated: authenticated
+      authenticated: authenticated, 
+      notifications: notifications
     }
     return this.http.post(`${this.uri}/user/generateCode`, user, this.httpOptions);
+  }
+
+  changeNotificationPreference(gannon_id: String, gmail: String, userType: String, authenticated: boolean, idNumber: Number, notifications: boolean){
+    console.log("poop")
+    const updatedUser = {
+      gmail: gmail,
+      userType: userType,
+      gannon_id: gannon_id,
+      idNumber: idNumber,
+      authenticated: authenticated,
+      notifications: notifications
+    }
+    return this.http.post(`${this.uri}/user/notification`, updatedUser, this.httpOptions);
+  }
+
+  deleteUserByGannonID(gmail: String){
+    return this.http.delete(`${this.uri}/user/gmail/${gmail}`);
   }
 }

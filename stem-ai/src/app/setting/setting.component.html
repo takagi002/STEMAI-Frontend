@@ -6,7 +6,7 @@
             <h3>Notification Settings</h3>
             <mat-list role="list">
                 <mat-list-item role="listitem">
-                    <mat-checkbox>Notify when recommendations are updated</mat-checkbox>
+                    <mat-checkbox  [(ngModel)]="checked" (change)='setNotificationPreference($event)' checked="checked">Notify when recommendations are updated</mat-checkbox>
                 </mat-list-item>
             </mat-list>
         </div>
@@ -23,24 +23,8 @@
             </div>
         </div>
         <mat-divider></mat-divider>
-        <div>
-            <form>
-                <mat-form-field class="input">
-                    <mat-label>Change Gannon ID</mat-label>
-                    <input matInput placeholder="Ex. smith001">
-                </mat-form-field>
-            </form>
-        </div>
-        <mat-divider></mat-divider>
-        <div class="row">
-            <button mat-raised-button class="button-bot">
-                <mat-icon>school</mat-icon>
-                <p>Professor</p>
-            </button>
-            <button mat-raised-button class="button-bot">
-                <mat-icon>auto_stories</mat-icon>
-                <p>Student</p>
-            </button>
+        <div class="center">
+            <button mat-raised-button class="but" (click)="openDialog()">Delete</button>
         </div>
     </mat-card-content>
 </mat-card>

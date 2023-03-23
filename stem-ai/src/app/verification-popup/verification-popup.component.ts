@@ -3,6 +3,7 @@ import { MatDialogRef } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { UserService } from '../services/user-services/user.service';
 import {MatSnackBar} from '@angular/material/snack-bar';
+import { SharingService } from '../services/sharing-service/sharing.service';
 
 
 @Component({
@@ -14,25 +15,25 @@ export class VerificationPopupComponent implements OnInit {
   code: any;
   currentUser: any;
   userWithCode: any;
+  userType: any;
 
   
 
   
-  constructor(private userService: UserService, private router: Router, public dialogRef: MatDialogRef<VerificationPopupComponent>, private errorSnackBar: MatSnackBar) {}
+  constructor(private userService: UserService, private router: Router, public dialogRef: MatDialogRef<VerificationPopupComponent>, private errorSnackBar: MatSnackBar, private sharingService:SharingService) {}
 
   ngOnInit(): void {
     
     //getting user from previous page
-    this.currentUser = this.userService.currentUser;
-    this.userService.currentUser = undefined;
-
+    this.currentUser = this.sharingService.getCurrentUser();
+    this.userType = this.sharingService.getUserType();
+    
     this.getCodeFromUser();
 
   }
 
   //just a routing method
   goToPage(pageName:string){
-    this.userService.currentUser = this.currentUser;
     this.router.navigate([`${pageName}`]);
   }
 
@@ -55,8 +56,12 @@ export class VerificationPopupComponent implements OnInit {
   checkCode(){
     if(this.userWithCode.authenticationCode == this.code){
       this.authenticateUser();
-      this.userService.currentUser = this.currentUser;
-      this.goToPage("student-rec")
+      if(this.userType == "student"){
+        this.goToPage("student-rec")
+      } else if(this.userType == "professor"){
+        this.goToPage("professor-classes")
+      }
+      
       this.dialogRef.close();
     } else {
       this.openSnackBar();
@@ -66,7 +71,7 @@ export class VerificationPopupComponent implements OnInit {
   //method to set authentication to true for the user in the backend
   async authenticateUser(){
   
-    await this.userService.updateUserByGannonID(this.userWithCode.gannon_id ,this.userWithCode.gmail, this.userWithCode.userType, true, this.userWithCode.idNumber).subscribe(res =>{
+    await this.userService.updateUserByGmail(this.userWithCode.gannon_id ,this.userWithCode.gmail, this.userWithCode.userType, true, this.userWithCode.idNumber, true).subscribe(res =>{
     })
   }
 
