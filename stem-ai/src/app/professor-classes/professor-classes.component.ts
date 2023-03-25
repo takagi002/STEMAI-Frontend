@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { ProfessorClassesService } from '../services/professor-class-service/professor-classes.service';
 import { SharingService } from '../services/sharing-service/sharing.service';
 import { UserService } from '../services/user-services/user.service';
 
@@ -11,16 +12,23 @@ import { UserService } from '../services/user-services/user.service';
 export class ProfessorClassesComponent {
 
   currentUser: any;
+  userID: any;
+  classes: any;
 
-  constructor(private sharingService: SharingService, private router: Router) {}
+  constructor(private sharingService: SharingService, private router: Router, private professorClassesService: ProfessorClassesService) {}
 
   ngOnInit(){
 
     this.currentUser = this.sharingService.getCurrentUser();
+    this.userID = this.sharingService.getIDNumber();
 
     if(Object.keys(this.currentUser).length === 0){
       this.goToPage("login")
     }
+
+    this.professorClassesService.getProfessorClasses(this.userID).subscribe(res =>{
+      this.classes = res;
+    })
 
   }
 
@@ -29,4 +37,5 @@ export class ProfessorClassesComponent {
     this.sharingService.setCurrentUser(this.currentUser);
     this.router.navigate([`${pageName}`]);
   }
+
 }
