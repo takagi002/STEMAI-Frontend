@@ -1,14 +1,14 @@
 <div>
-    <mat-list>
+    <mat-list *ngFor="let student of students">
         <mat-list-item>
             <mat-card class="card">
                 <div class="row">
                     <div class="row"> 
                         <mat-checkbox style="padding: 9px;"></mat-checkbox>
-                        <p > Student Name  </p>
+                        <p >{{student.student_id}}</p>
                     </div>
                     <div class="row">
-                        <mat-checkbox style="padding: 9px;" disabled="true"></mat-checkbox>
+                        <mat-checkbox style="padding: 9px;" disabled="true" checked={{student.needs_tutoring}}></mat-checkbox>
                         <div >
                             <mat-icon  style="padding: 17px; color: gray;" 
                             matTooltip="Based on our machine learning algorithm, students with similar grades to
