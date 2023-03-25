@@ -12,6 +12,7 @@ export class SharingService {
   authenticated: string = "authenticated";
   authenticationCode : string = "authenticationCode";
   notifications: string = "notifications"
+  currentClass: string = "currentClass"
 
 
   constructor() { }
@@ -109,5 +110,14 @@ export class SharingService {
 
   clearNotifications() {
     localStorage.removeItem(this.notifications);
+  }
+
+  setCurrentClass(data: any){
+    localStorage.setItem(this.currentClass, JSON.stringify(data));
+  }
+
+  getCurrentClass() {
+    let data = localStorage.getItem(this.currentClass);
+    return JSON.parse(data || '{}');
   }
 }

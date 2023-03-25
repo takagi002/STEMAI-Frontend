@@ -7,6 +7,7 @@ import { environment } from 'src/environment';
 })
 
 export class ProfessorClassesService {
+  
 
   uri: String  = environment.backendURI;
 
@@ -16,4 +17,7 @@ export class ProfessorClassesService {
     return this.http.get(`${this.uri}/professorClass/classes/${prof_id}`);
   }
 
+  getStudentsInClass(currentClass: any) {
+    return this.http.get(`${this.uri}/professorClass/students/${currentClass}`);
+  }
 }
