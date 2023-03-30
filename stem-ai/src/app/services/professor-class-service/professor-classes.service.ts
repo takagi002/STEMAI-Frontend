@@ -13,11 +13,11 @@ export class ProfessorClassesService {
 
   constructor(private http: HttpClient) { }
 
-  getProfessorClasses(prof_id: string) {
-    return this.http.get(`${this.uri}/professorClass/classes/${prof_id}`);
+  getProfessorClasses(prof_id: string, currentSemester: string) {
+    return this.http.get(`${this.uri}/professorClass/classes/${prof_id}/${currentSemester}`);
   }
 
-  getStudentsInClass(currentClass: any) {
-    return this.http.get(`${this.uri}/professorClass/students/${currentClass}`);
+  getStudentsInClass(currentClass: any, currentSemester: string) {
+    return this.http.get(`${this.uri}/professorClass/students/${currentClass}/${currentSemester}`);
   }
 }

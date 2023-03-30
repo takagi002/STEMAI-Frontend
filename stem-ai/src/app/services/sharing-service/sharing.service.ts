@@ -11,8 +11,9 @@ export class SharingService {
   idNumber: string = "idNumber";
   authenticated: string = "authenticated";
   authenticationCode : string = "authenticationCode";
-  notifications: string = "notifications"
-  currentClass: string = "currentClass"
+  notifications: string = "notifications";
+  currentClass: string = "currentClass";
+  currentSemester: string = "currentSemester";
 
 
   constructor() { }
@@ -119,5 +120,22 @@ export class SharingService {
   getCurrentClass() {
     let data = localStorage.getItem(this.currentClass);
     return JSON.parse(data || '{}');
+  }
+
+  clearCurrentClass() {
+    localStorage.removeItem(this.currentClass);
+  }
+
+  setCurrentSemester(data: any){
+    localStorage.setItem(this.currentSemester, JSON.stringify(data));
+  }
+
+  getCurrentSemester() {
+    let data = localStorage.getItem(this.currentSemester);
+    return JSON.parse(data || '{}');
+  }
+
+  clearCurrentSemester() {
+    localStorage.removeItem(this.currentSemester);
   }
 }

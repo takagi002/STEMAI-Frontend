@@ -14,6 +14,7 @@ export class ProfessorStudentsComponent {
   userID: any;
   students: any;
   currentClass: any;
+  currentSemester: any;
 
   constructor(private sharingService: SharingService, private router: Router, private professorClassesService: ProfessorClassesService) {}
 
@@ -22,12 +23,13 @@ export class ProfessorStudentsComponent {
     this.currentUser = this.sharingService.getCurrentUser();
     this.userID = this.sharingService.getIDNumber();
     this.currentClass = this.sharingService.getCurrentClass();
+    this.currentSemester = this.sharingService.getCurrentSemester();
 
     if(Object.keys(this.currentUser).length === 0){
       this.goToPage("login")
     }
 
-    this.professorClassesService.getStudentsInClass(this.currentClass).subscribe(res =>{
+    this.professorClassesService.getStudentsInClass(this.currentClass,this.currentSemester).subscribe(res =>{
       this.students = res;
     })
 

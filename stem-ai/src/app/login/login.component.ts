@@ -29,6 +29,7 @@ export class LoginComponent implements OnInit{
   ngOnInit() {
 
     this.googleAuthSDK();
+    this.sharingService.setCurrentSemester("S2023");
   }
 
    callLogin() {

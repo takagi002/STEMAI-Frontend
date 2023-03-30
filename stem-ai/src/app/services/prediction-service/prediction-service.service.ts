@@ -13,8 +13,8 @@ export class PredictionServiceService {
 
 
   //gets all student predictions related to given student ID
-  getAllStudentPredictionsByStudentId(id: String) {
-    return this.http.get(`${this.uri}/prediction/studentIDAll/${id}`);
+  getAllStudentPredictionsByStudentId(id: string, currentSemester: string) {
+    return this.http.get(`${this.uri}/prediction/studentIDAll/${id}/${currentSemester}`);
   }
   
 }

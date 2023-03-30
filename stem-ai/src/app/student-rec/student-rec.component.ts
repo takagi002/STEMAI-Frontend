@@ -24,6 +24,7 @@ export class StudentRecComponent implements OnInit{
   currentUser: any;
   classes: any = [];
   fullUser: any;
+  currentSemester: any;
 
   goToPage(pageName:string){
     this.sharingService.setCurrentUser(this.currentUser);
@@ -34,6 +35,7 @@ export class StudentRecComponent implements OnInit{
 
     //get user from last page
     this.currentUser = this.sharingService.getCurrentUser();
+    this.currentSemester = this.sharingService.getCurrentSemester();
 
     if(Object.keys(this.currentUser).length === 0){
       this.goToPage("login")
@@ -45,7 +47,7 @@ export class StudentRecComponent implements OnInit{
       console.log(this.fullUser)
       this.classService.getClasses().subscribe(res=> {
         this.classes = res;
-        this.predictionService.getAllStudentPredictionsByStudentId(this.fullUser.idNumber).subscribe(res => {
+        this.predictionService.getAllStudentPredictionsByStudentId(this.fullUser.idNumber, this.currentSemester).subscribe(res => {
           this.predictions = res;
           this.addNamesToPredictions(this.predictions, this.classes);
         })
