@@ -35,6 +35,7 @@ import { WconlinePopupComponent } from './wconline-popup/wconline-popup.componen
 import { ProfessorClassesComponent } from './professor-classes/professor-classes.component';
 import { PredictionServiceService } from './services/prediction-service/prediction-service.service';
 import { UserService } from './services/user-services/user.service';
+import { EmailService } from './services/email-service/email.service'
 import { ContactPageComponent } from './contact-page/contact-page.component';
 import { AboutPageComponent } from './about-page/about-page.component';
 import { SharingService } from './services/sharing-service/sharing.service';
@@ -79,7 +80,7 @@ imports: [
                   FormsModule, MatDialogModule, MatSnackBarModule, BrowserAnimationsModule],
   declarations: [ AppComponent, LoginComponent, InfoComponent, StudentRecComponent, SettingComponent, VerificationPopupComponent, OnlynumberDirective, WconlinePopupComponent, ProfessorClassesComponent, ContactPageComponent, AboutPageComponent, HomePageComponent, TeamPageComponent, ProfessorStudentsComponent, DeleteUserPopupComponent ],
   bootstrap:    [ AppComponent ],
-  providers: [ ClassService, PredictionServiceService, UserService, SharingService ]
+  providers: [ ClassService, PredictionServiceService, UserService, SharingService, EmailService ]
 })
 
 export class AppModule { 

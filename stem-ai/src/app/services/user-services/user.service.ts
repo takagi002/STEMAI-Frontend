@@ -78,7 +78,6 @@ export class UserService {
   }
 
   changeNotificationPreference(gannon_id: String, gmail: String, userType: String, authenticated: boolean, idNumber: Number, notifications: boolean){
-    console.log("poop")
     const updatedUser = {
       gmail: gmail,
       userType: userType,
@@ -92,5 +91,9 @@ export class UserService {
 
   deleteUserByGannonID(gmail: String){
     return this.http.delete(`${this.uri}/user/gmail/${gmail}`);
+  }
+
+  checkIfUserSignedUp(idNumber: string){
+    return this.http.get(`${this.uri}/user/signedUp/${idNumber}`);
   }
 }

@@ -40,8 +40,9 @@ export class ProfessorClassesComponent {
     this.router.navigate([`${pageName}`]);
   }
 
-  goToStudentPage(className: any){
-    this.sharingService.setCurrentClass(className);
+  goToStudentPage(classID: any, className: string){
+    this.sharingService.setCurrentClass(classID);
+    this.sharingService.setCurrentClassName(className);
     this.goToPage("professor-students");
   }
 

@@ -14,6 +14,7 @@ export class SharingService {
   notifications: string = "notifications";
   currentClass: string = "currentClass";
   currentSemester: string = "currentSemester";
+  currentClassName: string = "currentClassName"
 
 
   constructor() { }
@@ -137,5 +138,18 @@ export class SharingService {
 
   clearCurrentSemester() {
     localStorage.removeItem(this.currentSemester);
+  }
+
+  setCurrentClassName(data: any){
+    localStorage.setItem(this.currentClassName, JSON.stringify(data));
+  }
+
+  getCurrentClassName() {
+    let data = localStorage.getItem(this.currentClassName);
+    return JSON.parse(data || '{}');
+  }
+
+  clearCurrentClassName() {
+    localStorage.removeItem(this.currentClassName);
   }
 }

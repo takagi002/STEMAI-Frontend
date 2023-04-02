@@ -4,7 +4,7 @@
             <mat-card class="card">
                 <div class="row">
                     <div class="row"> 
-                        <mat-checkbox style="padding: 9px;"></mat-checkbox>
+                        <mat-checkbox style="padding: 9px;" [(ngModel)]="student.isSelected" disabled={{!student.isSignedUp}}></mat-checkbox>
                         <p >{{student.student_id}}</p>
                     </div>
                     <div class="row">
@@ -20,7 +20,7 @@
         </mat-list-item>
     </mat-list>
     <div class="button-row">
-        <button mat-raised-button class="button">Send Selected</button>
-        <button mat-raised-button class="button">Send All</button>
+        <button mat-raised-button (click)=sendToSelected() class="button">Send Selected</button>
+        <button mat-raised-button (click)="sendToAll()" class="button">Send All</button>
     </div>
 </div>

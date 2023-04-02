@@ -118,6 +118,7 @@ export class LoginComponent implements OnInit{
           if(user.userType === "student"){
             this.goToPage('student-rec');
           } else if(user.userType === "professor"){
+            this.sharingService.setGannonID(user.gannon_id);
             this.goToPage('professor-classes');
           }
         })
