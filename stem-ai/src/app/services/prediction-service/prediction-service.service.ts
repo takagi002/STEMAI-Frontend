@@ -16,5 +16,9 @@ export class PredictionServiceService {
   getAllStudentPredictionsByStudentId(id: string, currentSemester: string) {
     return this.http.get(`${this.uri}/prediction/studentIDAll/${id}/${currentSemester}`);
   }
+
+  getStudentPredictionsByStudentIDandClass(id: string, currentSemester: string, course_id: string){
+    return this.http.get(`${this.uri}/prediction/studentInClass/${id}/${currentSemester}/${course_id}`);
+  }
   
 }

@@ -5,6 +5,7 @@ import { EmailService } from '../services/email-service/email.service';
 import { ProfessorClassesService } from '../services/professor-class-service/professor-classes.service';
 import { SharingService } from '../services/sharing-service/sharing.service';
 import { UserService } from '../services/user-services/user.service';
+import { PredictionServiceService } from '../services/prediction-service/prediction-service.service';
 
 @Component({
   selector: 'app-professor-students',
@@ -21,7 +22,7 @@ export class ProfessorStudentsComponent {
   currentGannonId: any;
   currentClassName: any;
 
-  constructor(private sharingService: SharingService, private router: Router, private professorClassesService: ProfessorClassesService, private userService: UserService, private emailService: EmailService, private errorSnackBar: MatSnackBar,) {}
+  constructor(private sharingService: SharingService, private router: Router, private professorClassesService: ProfessorClassesService, private userService: UserService, private emailService: EmailService, private errorSnackBar: MatSnackBar, private predictionService: PredictionServiceService) {}
 
   ngOnInit(){
 
@@ -31,6 +32,7 @@ export class ProfessorStudentsComponent {
     this.currentSemester = this.sharingService.getCurrentSemester();
     this.currentGannonId = this.sharingService.getGannonID();
     this.currentClassName = this.sharingService.getCurrentClassName();
+    
 
     if(Object.keys(this.currentUser).length === 0){
       this.goToPage("login")
@@ -40,6 +42,7 @@ export class ProfessorStudentsComponent {
       this.students = res;
 
       this.students.forEach((studie: {
+        needs_tutoring: any;
         isSignedUp: boolean; student_id: string; 
       }) => {
         this.userService.checkIfUserSignedUp(studie.student_id).subscribe(res => {
@@ -50,9 +53,13 @@ export class ProfessorStudentsComponent {
             studie.isSignedUp = true;
           }
         });
+        this.predictionService.getStudentPredictionsByStudentIDandClass(studie.student_id, this.currentSemester, this.currentClass).subscribe(res => {
+          studie.needs_tutoring = res
+        })
+        
+        
       });
     })
-
   }
 
   
@@ -66,8 +73,7 @@ export class ProfessorStudentsComponent {
       this.errorSnackBar.open("Email(s) Sent", "Close",{
         horizontalPosition: "center",
         verticalPosition: "top",
-      })
-    
+      }) 
   }
 
 
@@ -121,4 +127,12 @@ export class ProfessorStudentsComponent {
      });
     })
   }
+
+
+  getPredictionsForStudents() {
+
+  }
+
 }
+
+
