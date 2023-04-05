@@ -29,6 +29,7 @@ export class LoginComponent implements OnInit{
   ngOnInit() {
 
     this.googleAuthSDK();
+    this.sharingService.setCurrentSemester("S2023");
   }
 
    callLogin() {
@@ -114,9 +115,12 @@ export class LoginComponent implements OnInit{
       if(authenticated){
          this.userService.getUserByGmailId(gmail).subscribe(res =>{
           user = res;
+          this.sharingService.setGannonID(user.gannon_id);
+          this.sharingService.setIDNumber(user.idNumber);
           if(user.userType === "student"){
             this.goToPage('student-rec');
           } else if(user.userType === "professor"){
+            this.sharingService.setGannonID(user.gannon_id);
             this.goToPage('professor-classes');
           }
         })

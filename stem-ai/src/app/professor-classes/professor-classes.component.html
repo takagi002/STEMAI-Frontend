@@ -1,3 +1,25 @@
 <div>
-    <button mat-raised-button class="button">Sample Class 1</button>
+    <div class="accordion">
+        <mat-accordion >
+            <mat-expansion-panel hideToggle>
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        Tutorial- Click to Open
+                    </mat-panel-title>
+                </mat-expansion-panel-header>
+                <mat-panel-description>
+                    Each panel represents one class you are teaching. 
+                    Once you click on that class you will get a list of 
+                    students. You can return to this page 
+                    through the menu in the navigation bar. 
+                </mat-panel-description>
+            </mat-expansion-panel>
+        </mat-accordion>
+    </div>
+    <h2>Classes</h2>
+    <mat-list *ngFor="let class of classes">
+        <mat-list-item>
+            <button mat-raised-button class="button" (click)="goToStudentPage(class.course_id, class.course_name)">{{class.course_name}}</button>
+        </mat-list-item>
+    </mat-list>
 </div>

@@ -33,7 +33,6 @@ export class SettingComponent {
     
 
   }
-
   
   goToPage(pageName:string){
     this.sharingService.setCurrentUser(this.currentUser);

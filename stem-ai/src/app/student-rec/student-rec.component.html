@@ -1,14 +1,35 @@
 <div>
+    <div class="accordion">
+        <mat-accordion >
+            <mat-expansion-panel hideToggle>
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        Tutorial- Click to Open
+                    </mat-panel-title>
+                </mat-expansion-panel-header>
+                <mat-panel-description>
+                    Each panel represents one class you are taking. The WCOnline
+                    button will open a popup that will redirect you to WcOnline if you
+                    click yes on the popup. The checkbox beside the WCOnline button 
+                    tells you if our algorithm believes you would benefit from tutoring.
+                    If the checkbox is checked the algorithm believes you will benefit, 
+                    otherwise it doesn't, but tutoring is always recommended.
+                    The question icon beside the checkbox explains the checkbox beside it. 
+                </mat-panel-description>
+            </mat-expansion-panel>
+        </mat-accordion>
+    </div>
+    <h2>Classes</h2>
     <mat-list *ngFor="let prediction of predictions">
         <mat-list-item>
             <mat-card class="card">
                 <div class="row">
                     <div class="row">
                         <mat-icon style="padding: 17px;">book</mat-icon>
-                        <p > {{prediction.name}}  </p>
+                        <p > Class: {{prediction.name}}  </p>
                     </div>
                     <div class="row">
-                        <button mat-raised-button class="button" disabled={{!prediction.prediction}} (click)="openDialog()">WCOnline</button>
+                        <button mat-raised-button class="button" (click)="openDialog()">WCOnline</button>
                         <mat-checkbox style="padding: 9px;" disabled="true" checked={{prediction.prediction}}></mat-checkbox>
                         <div *ngIf="prediction.prediction; else elseBlock">
                             <mat-icon  style="padding: 17px; color: gray;" 

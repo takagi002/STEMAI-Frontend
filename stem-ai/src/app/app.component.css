@@ -2,19 +2,21 @@
     background-color: rgba(5, 5, 5, 0.856);
     -webkit-text-fill-color: white;
     justify-content: space-between;
-    margin-bottom: 1%;
     font-size: 30px;
   }
-
-
-  .footer{
-    background-color: rgba(5, 5, 5, 0.856);
-    margin-top: 10px;
-  }
-
   .row{
     display: flex;
-    justify-content: space-evenly;
+    justify-content: space-between;
     padding: 10px;
     -webkit-text-fill-color: white;
+}
+
+.welcome{
+  justify-content: center;
+  background-color: rgba(5, 5, 5, 0.856);
+  -webkit-text-fill-color: white;
+}
+
+.container{
+  margin: 5%;
 }

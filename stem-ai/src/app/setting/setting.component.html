@@ -6,7 +6,7 @@
             <h3>Notification Settings</h3>
             <mat-list role="list">
                 <mat-list-item role="listitem">
-                    <mat-checkbox  [(ngModel)]="checked" (change)='setNotificationPreference($event)' checked="checked">Notify when recommendations are updated</mat-checkbox>
+                    <mat-slide-toggle  [(ngModel)]="checked" (change)='setNotificationPreference($event)' checked="true">Notify when recommendations are updated</mat-slide-toggle>
                 </mat-list-item>
             </mat-list>
         </div>
