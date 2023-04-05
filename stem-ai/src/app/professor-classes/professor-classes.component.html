@@ -4,7 +4,7 @@
             <mat-expansion-panel hideToggle>
                 <mat-expansion-panel-header>
                     <mat-panel-title>
-                        Tutorial
+                        Tutorial- Click to Open
                     </mat-panel-title>
                 </mat-expansion-panel-header>
                 <mat-panel-description>
@@ -16,6 +16,7 @@
             </mat-expansion-panel>
         </mat-accordion>
     </div>
+    <h2>Classes</h2>
     <mat-list *ngFor="let class of classes">
         <mat-list-item>
             <button mat-raised-button class="button" (click)="goToStudentPage(class.course_id, class.course_name)">{{class.course_name}}</button>
