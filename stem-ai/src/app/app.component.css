@@ -13,11 +13,10 @@
 
 .welcome{
   justify-content: center;
-  margin-bottom: 5%;
   background-color: rgba(5, 5, 5, 0.856);
   -webkit-text-fill-color: white;
 }
 
-.hidden{
-  display: none;
+.container{
+  margin: 5%;
 }

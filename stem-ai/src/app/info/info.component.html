@@ -1,4 +1,40 @@
 <section>
+    <mat-card class="tutorial">
+        <mat-divider></mat-divider>
+        <mat-card-title class="center">Tutorial</mat-card-title>
+        <mat-divider></mat-divider>
+        <mat-card-content>
+            <mat-list role="list">
+                <mat-list-item role="listitem">
+                    1. Enter your Gannon email ID in the box named Gannon Email ID. ex. smith001
+                </mat-list-item>
+                <mat-list-item role="listitem">
+                    2. Enter your Gannon ID number in the box named Gannon ID number. ex. 123456
+                </mat-list-item>
+                <mat-list-item role="listitem">
+                    <span matListItemTitle>3. Choose your role.</span>
+                    <span matListItemLine>
+                        3.a If you are a professor click the professor button below the Gannon ID Number 
+                        input box
+                    </span>
+                    <span matListItemLine>
+                        3.b If you are a student click the student button below the Gannon ID Number 
+                        input box
+                    </span>
+                </mat-list-item>
+                <mat-list-item>
+                    4. When you click the button an email will be sent to your Gannon Email with
+                    a verification code.  
+                </mat-list-item>
+                <mat-list-item>
+                    5. Enter the verification code from the email in the textbox from the popup. After you entered the verification code, click enter.
+                </mat-list-item>
+                <mat-list-item>
+                    6. You will automatically be relocated to the professor or student page.
+                </mat-list-item>
+            </mat-list>
+        </mat-card-content>
+    </mat-card>
     <mat-card class="card">
         <mat-divider></mat-divider>
         <mat-card-title class="center">User Info</mat-card-title>
@@ -7,7 +43,7 @@
             <div>
                 <form >
                     <mat-form-field class="input">
-                        <mat-label>Gannon ID</mat-label>
+                        <mat-label>Gannon Email ID</mat-label>
                         <input matInput placeholder="Ex. smith001" [(ngModel)]="gannonID" name="gannonIDLabel">
                     </mat-form-field>
                 </form>
@@ -16,7 +52,7 @@
             <div>
                 <form >
                     <mat-form-field class="input">
-                        <mat-label>ID Number</mat-label>
+                        <mat-label>Gannon ID Number</mat-label>
                         <input matInput placeholder="Ex. 123456" [(ngModel)]="idNumber" appOnlynumber name="idNumberLabel" maxlength="6">
                     </mat-form-field>
                 </form>

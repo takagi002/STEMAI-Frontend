@@ -30,7 +30,7 @@
               </mat-menu>
         </div>
     </mat-toolbar>
-    <mat-toolbar-row class="welcome">
+    <mat-toolbar-row class="welcome" *ngIf="authenticated">
         <p>Welcome, {{userType | titlecase}} {{userID}}</p>
     </mat-toolbar-row>
 </header>

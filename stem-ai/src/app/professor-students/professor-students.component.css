@@ -21,3 +21,9 @@
 .button{
     margin: 20px;
 }
+
+.accordion{
+    width: 85%;
+    left: 10%;
+    margin: 3%;
+}

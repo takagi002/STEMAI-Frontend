@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import {Router} from '@angular/router';
 import { SharingService } from './services/sharing-service/sharing.service';
-import { UserService } from './services/user-services/user.service';
 
 @Component({
   selector: 'app-root',
@@ -13,7 +12,7 @@ export class AppComponent{
   title = 'stem-ai';
   userID: any;
   userType: any;
-  user: any; 
+  authenticated: any;
 
   constructor(public router: Router, private sharingService: SharingService) { }
   
@@ -24,5 +23,6 @@ export class AppComponent{
   ngOnInit(){
     this.userID = this.sharingService.getIDNumber();
     this.userType = this.sharingService.getUserType();
+    this.authenticated = this.sharingService.getAuthenticated();
   }
 }

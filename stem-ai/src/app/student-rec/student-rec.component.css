@@ -19,3 +19,13 @@
     top: 40px;
     background-color: lightgray;
 }
+
+.center{
+    text-align: center;
+}
+
+.accordion{
+    width: 85%;
+    left: 10%;
+    margin: 3%;
+}
