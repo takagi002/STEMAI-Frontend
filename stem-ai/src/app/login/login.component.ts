@@ -27,7 +27,12 @@ export class LoginComponent implements OnInit{
     this.router.navigate([`${pageName}`]);
   }
   ngOnInit() {
-
+    if (!localStorage.getItem('foo')) {
+      localStorage.setItem('foo', 'no reload')
+      location.reload()
+    } else {
+      localStorage.removeItem('foo')
+    }
     this.googleAuthSDK();
     this.sharingService.setCurrentSemester("S2023");
   }
@@ -40,7 +45,7 @@ export class LoginComponent implements OnInit{
         //Print profile details in the console logs
 
         let profile = googleAuthUser.getBasicProfile();
-        
+
         // console.log('Token || ' + googleAuthUser.getAuthResponse().id_token);
         // console.log('ID: ' + profile.getId());
         // console.log('Name: ' + profile.getName());
@@ -50,7 +55,7 @@ export class LoginComponent implements OnInit{
         this.currentUser = profile.getEmail();
         this.checkUserExists(profile.getEmail());
 
-        
+
 
       }, (error: any) => {
         alert(JSON.stringify(error, undefined, 2));
@@ -87,7 +92,7 @@ export class LoginComponent implements OnInit{
   async addNewUser(gmail: String) {
     this.userService.addUser(gmail).subscribe(res => {
       this.user = res;
-    }) 
+    })
   }
 
   //checks db to see if user already exists then if they don't adds a new user and if they do checks if the user is authenticated
@@ -101,9 +106,9 @@ export class LoginComponent implements OnInit{
       } else {
         this.checkIfAuthenticated(gmail);
       }
-     
+
     })
-    
+
   }
 
   //checks db to see if user authenticated, if they are go to student rec page if not go to info page
@@ -124,7 +129,7 @@ export class LoginComponent implements OnInit{
             this.goToPage('professor-classes');
           }
         })
-        
+
       } else {
         this.goToPage('info');
       }
