@@ -30,9 +30,6 @@
               </mat-menu>
         </div>
     </mat-toolbar>
-    <mat-toolbar-row class="welcome" *ngIf="authenticated">
-        <p>Welcome, {{userType | titlecase}} {{userID}}</p>
-    </mat-toolbar-row>
 </header>
 <main class="container">
     <router-outlet></router-outlet>
