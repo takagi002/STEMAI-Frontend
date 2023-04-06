@@ -19,7 +19,6 @@ export class VerificationPopupComponent implements OnInit {
 
 
 
-
   constructor(private userService: UserService, private router: Router, public dialogRef: MatDialogRef<VerificationPopupComponent>, private errorSnackBar: MatSnackBar, private sharingService:SharingService) {}
 
   ngOnInit(): void {
@@ -53,8 +52,8 @@ export class VerificationPopupComponent implements OnInit {
   }
 
   //checks that the code the user entered matches the one stored in the db that was generated
-  checkCode(){
-    const inputAsNum: number = +this.userWithCode.authenticationCode
+  checkCode(input: any){
+    const inputAsNum: number = +input
     const codeAsNum: number = +this.code
     if(inputAsNum === codeAsNum){
       this.authenticateUser();

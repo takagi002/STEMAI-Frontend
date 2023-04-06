@@ -2,6 +2,21 @@
     <mat-card-title style="text-align: center; font-size: 30px; padding: 10px;">Settings</mat-card-title>
     <mat-divider></mat-divider>
     <mat-card-content>
+      <div>
+        <h3>Your Profile Info</h3>
+        <mat-list role="list">
+          <mat-list-item role="listitem">
+            <h4>Name: {{this.currentUser.name}}</h4>
+          </mat-list-item>
+          <mat-list-item role="listitem">
+            <h4>Gannon ID: {{this.currentUser.id}}</h4>
+          </mat-list-item>
+          <mat-list-item role="listitem">
+            <h4>ID Number: {{this.currentUser.idNumber}}</h4>
+          </mat-list-item>
+        </mat-list>
+      </div>
+      <mat-divider></mat-divider>
         <div>
             <h3>Notification Settings</h3>
             <mat-list role="list">
@@ -11,20 +26,8 @@
             </mat-list>
         </div>
         <mat-divider></mat-divider>
-        <div>
-            <h3>Theme Settings</h3>
-            <div class="row">
-                <button mat-icon-button class="button">
-                    <mat-icon>light_mode</mat-icon>
-                </button>
-                <button mat-icon-button class="button">
-                    <mat-icon>dark_mode</mat-icon>
-                </button>
-            </div>
-        </div>
-        <mat-divider></mat-divider>
         <div class="center">
-            <button mat-raised-button class="but" (click)="openDialog()">Delete</button>
+            <button mat-raised-button class="but" (click)="openDialog()">Delete Account</button>
         </div>
     </mat-card-content>
 </mat-card>
