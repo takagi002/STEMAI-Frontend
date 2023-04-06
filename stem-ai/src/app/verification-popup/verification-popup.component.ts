@@ -17,17 +17,16 @@ export class VerificationPopupComponent implements OnInit {
   userWithCode: any;
   userType: any;
 
-  
 
-  
+
   constructor(private userService: UserService, private router: Router, public dialogRef: MatDialogRef<VerificationPopupComponent>, private errorSnackBar: MatSnackBar, private sharingService:SharingService) {}
 
   ngOnInit(): void {
-    
+
     //getting user from previous page
     this.currentUser = this.sharingService.getCurrentUser();
     this.userType = this.sharingService.getUserType();
-    
+
     this.getCodeFromUser();
 
   }
@@ -53,27 +52,29 @@ export class VerificationPopupComponent implements OnInit {
   }
 
   //checks that the code the user entered matches the one stored in the db that was generated
-  checkCode(){
-    if(this.userWithCode.authenticationCode == this.code){
+  checkCode(input: any){
+    const inputAsNum: number = +input
+    const codeAsNum: number = +this.code
+    if(inputAsNum === codeAsNum){
       this.authenticateUser();
       if(this.userType == "student"){
         this.goToPage("student-rec")
       } else if(this.userType == "professor"){
         this.goToPage("professor-classes")
       }
-      
+
       this.dialogRef.close();
     } else {
       this.openSnackBar();
     }
   }
-  
+
   //method to set authentication to true for the user in the backend
   async authenticateUser(){
-  
+
     await this.userService.updateUserByGmail(this.userWithCode.gannon_id ,this.userWithCode.gmail, this.userWithCode.userType, true, this.userWithCode.idNumber, true).subscribe(res =>{
     })
   }
 
-  
+
 }
