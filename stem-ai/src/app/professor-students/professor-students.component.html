@@ -8,21 +8,21 @@
                     </mat-panel-title>
                 </mat-expansion-panel-header>
                 <mat-panel-description>
-                    Each panel represents a student in your class. 
-                    The checkbox on the left of the pannel is how you select 
-                    students in order to send them emails recommending 
+                    Each panel represents a student in your class.
+                    The checkbox on the left of the panel is how you select
+                    students in order to send them emails recommending
                     tutoring. If the checkbox is not selectable, that student
-                    has not signed up with STEMAI and therefore cannot receive 
+                    has not signed up with STEM-AI and therefore cannot receive
                     emails from us. The numbers beside the checkbox is the students
                     id number. The checkbox on the right side of the panel
                     shows whether the algorithm recommends tutoring for said student.
-                    If the algorithm recommends tutoring that checkbox will be checked, 
-                    otherwise the checkbox won't be checked. The question mark icon 
-                    besides the checkbox explains why the checkbox is checked as well. 
-                    You can use the buttons at the end of the screen to send emails to 
-                    selected students by selecting the checkbox on the left side of the 
-                    pannel and clicking the button Send Selected. If you want to send an 
-                    email recommending tutoril to all students you can click the Send All button.
+                    If the algorithm recommends tutoring that checkbox will be checked,
+                    otherwise the checkbox won't be checked. The question mark icon
+                    besides the checkbox explains why the checkbox is checked as well.
+                    You can use the buttons at the end of the screen to send emails to
+                    selected students by selecting the checkbox on the left side of the
+                    panel and clicking the button Send Selected. If you want to send an
+                    email recommending tutorial to all students you can click the Send All button.
                 </mat-panel-description>
             </mat-expansion-panel>
         </mat-accordion>
@@ -32,14 +32,14 @@
         <mat-list-item>
             <mat-card class="card">
                 <div class="row">
-                    <div class="row"> 
+                    <div class="row">
                         <mat-checkbox style="padding: 9px;" [(ngModel)]="student.isSelected" disabled={{!student.isSignedUp}}></mat-checkbox>
                         <p >{{student.student_id}}</p>
                     </div>
                     <div class="row">
                         <mat-checkbox style="padding: 9px;" disabled="true" checked={{student.needs_tutoring}}></mat-checkbox>
                         <div >
-                            <mat-icon  style="padding: 17px; color: gray;" 
+                            <mat-icon  style="padding: 17px; color: gray;"
                             matTooltip="Based on our machine learning algorithm, students with similar grades to
                             to this have improved a letter grade by getting tutoring for this class">help</mat-icon>
                         </div>

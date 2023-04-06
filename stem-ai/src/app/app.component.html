@@ -1,6 +1,6 @@
 <header>
     <mat-toolbar class="main-nav" >
-        <span>STEM AI</span>
+        <span>STEM-AI</span>
         <div>
             <button mat-button (click)="goToPage('home-page')">Home</button>
             <button mat-button (click)="goToPage('about-page')">About</button>
@@ -30,10 +30,7 @@
               </mat-menu>
         </div>
     </mat-toolbar>
-    <mat-toolbar-row class="welcome" *ngIf="authenticated">
-        <p>Welcome, {{userType | titlecase}} {{userID}}</p>
-    </mat-toolbar-row>
 </header>
-<main class="container">  
+<main class="container">
     <router-outlet></router-outlet>
 </main>

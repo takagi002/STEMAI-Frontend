@@ -25,6 +25,7 @@ export class StudentRecComponent implements OnInit{
   classes: any = [];
   fullUser: any;
   currentSemester: any;
+  userID: any;
 
   goToPage(pageName:string){
     this.sharingService.setCurrentUser(this.currentUser);
@@ -36,6 +37,7 @@ export class StudentRecComponent implements OnInit{
     //get user from last page
     this.currentUser = this.sharingService.getCurrentUser();
     this.currentSemester = this.sharingService.getCurrentSemester();
+    this.userID = this.sharingService.getIDNumber();
 
     if(Object.keys(this.currentUser).length === 0){
       this.goToPage("login")
@@ -56,17 +58,17 @@ export class StudentRecComponent implements OnInit{
 
 
 
-  
+
   }
   //this will open WConline popup that will redirect you there
   openDialog(){
     this.zone.run(() => {
       this.dialogRef.open(WconlinePopupComponent);
     })
-    
+
   }
 
-  
+
 
   //cross references the course ids in predictions and all the classes to get the name of the course
   addNamesToPredictions(predictions: any, classes: any){
@@ -76,7 +78,7 @@ export class StudentRecComponent implements OnInit{
       pred.name = name.course_name;
     });
 
-    
+
   }
-  
+
 }
