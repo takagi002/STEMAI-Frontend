@@ -1,12 +1,15 @@
 <h1 mat-dialog-title>Verification Code</h1>
 <div mat-dialog-content>
-  <p>Enter the verification code sent to your Gannon email</p>
+  <div>
+    <p>Enter the verification code sent to your Gannon email.</p>
+    <i>Note: This could take up to 5 minutes.</i>
+  </div>
   <mat-form-field appearance="fill">
     <mat-label>Verification Code</mat-label>
     <input matInput maxlength="6" [(ngModel)]="code" appOnlynumber name="codeBox">
   </mat-form-field>
 </div>
 <div mat-dialog-actions>
-  <button mat-button mat-dialog-close >Cancel</button>
+  <button mat-button mat-dialog-close>Cancel</button>
   <button mat-button (click)="checkCode()">Enter</button>
 </div>
