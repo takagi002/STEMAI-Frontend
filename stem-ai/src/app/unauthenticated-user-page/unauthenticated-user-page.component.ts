@@ -1,32 +1,29 @@
-import { Component, OnInit } from '@angular/core';
-import { MatDialogRef } from '@angular/material/dialog';
-import { Router } from '@angular/router';
-import { UserService } from '../services/user-services/user.service';
-import {MatSnackBar} from '@angular/material/snack-bar';
+import { Component } from '@angular/core';
 import { SharingService } from '../services/sharing-service/sharing.service';
-
+import { UserService } from '../services/user-services/user.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-verification-popup',
-  templateUrl: './verification-popup.component.html',
-  styleUrls: ['./verification-popup.component.css']
+  selector: 'app-unauthenticated-user-page',
+  templateUrl: './unauthenticated-user-page.component.html',
+  styleUrls: ['./unauthenticated-user-page.component.css']
 })
-export class VerificationPopupComponent implements OnInit {
-  code: any;
+export class UnauthenticatedUserPageComponent {
+  authenticationCode: any;
   currentUser: any;
   userWithCode: any;
   userType: any;
 
 
-
-  constructor(private userService: UserService, private router: Router, public dialogRef: MatDialogRef<VerificationPopupComponent>, private errorSnackBar: MatSnackBar, private sharingService:SharingService) {}
+  constructor(private userService: UserService, private sharingService:SharingService, private router: Router,  private errorSnackBar: MatSnackBar,) {}
 
   ngOnInit(): void {
-
+    
     //getting user from previous page
     this.currentUser = this.sharingService.getCurrentUser();
     this.userType = this.sharingService.getUserType();
-
+    
     this.getCodeFromUser();
 
   }
@@ -37,8 +34,8 @@ export class VerificationPopupComponent implements OnInit {
   }
 
   //opens up a snackbar to show an incorrect code was entered
-  openSnackBar() {
-    this.errorSnackBar.open("Incorrect Authentication Code", "Close",{
+  openSnackBar(message: string) {
+    this.errorSnackBar.open(message, "Close",{
       horizontalPosition: "center",
       verticalPosition: "top",
     });
@@ -53,30 +50,28 @@ export class VerificationPopupComponent implements OnInit {
 
   //checks that the code the user entered matches the one stored in the db that was generated
   checkCode(){
-    if(this.code === this.userWithCode.authenticationCode){
+    if(this.userWithCode.authenticationCode == this.authenticationCode){
       this.authenticateUser();
       if(this.userType == "student"){
         this.goToPage("student-rec")
       } else if(this.userType == "professor"){
         this.goToPage("professor-classes")
       }
-
-      this.dialogRef.close();
     } else {
-      this.openSnackBar();
+      this.openSnackBar("Incorrect Authentication Code");
     }
   }
-
+  
   //method to set authentication to true for the user in the backend
   async authenticateUser(){
-
+  
     await this.userService.updateUserByGmail(this.userWithCode.gannon_id ,this.userWithCode.gmail, this.userWithCode.userType, true, this.userWithCode.idNumber, true).subscribe(res =>{
     })
   }
 
-  toAuthenticatePage(){
-    this.goToPage('unauthenticated-user');
-    this.dialogRef.close();
+  async resendCode(){
+    await this.userService.sendCode(this.userWithCode.gannon_id, this.currentUser, this.userType, false, this.userWithCode.idNumber, true).subscribe(res => {})
+    this.getCodeFromUser();
+    this.openSnackBar("New Code Sent");
   }
-  
 }

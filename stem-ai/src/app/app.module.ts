@@ -44,6 +44,7 @@ import { HomePageComponent } from './home-page/home-page.component';
 import { TeamPageComponent } from './team-page/team-page.component';
 import { ProfessorStudentsComponent } from './professor-students/professor-students.component';
 import { DeleteUserPopupComponent } from './delete-user-popup/delete-user-popup.component';
+import { UnauthenticatedUserPageComponent } from './unauthenticated-user-page/unauthenticated-user-page.component';
 
 const routes: Routes = [
   { path: 'info', component: InfoComponent },
@@ -65,7 +66,9 @@ const routes: Routes = [
   { path: 'team-page', component: TeamPageComponent },
   { path: '', redirectTo: '/team-page', pathMatch: 'full' },
   { path: 'professor-students', component: ProfessorStudentsComponent },
-  { path: '', redirectTo: '/professor-students', pathMatch: 'full' }
+  { path: '', redirectTo: '/professor-students', pathMatch: 'full' },
+  { path: 'unauthenticated-user', component: UnauthenticatedUserPageComponent },
+  { path: '', redirectTo: '/unauthenticated-user', pathMatch: 'full' }
 ];
 
 imports: [
@@ -79,7 +82,7 @@ imports: [
                   MatFormFieldModule, MatInputModule, MatIconModule, MatButtonModule, MatToolbarModule, MatSlideToggleModule, 
                   MatCheckboxModule, MatCardModule, FlexLayoutModule, BrowserModule, RouterModule.forRoot(routes), 
                   FormsModule, MatDialogModule, MatSnackBarModule, BrowserAnimationsModule, MatMenuModule, MatExpansionModule],
-  declarations: [ AppComponent, LoginComponent, InfoComponent, StudentRecComponent, SettingComponent, VerificationPopupComponent, OnlynumberDirective, WconlinePopupComponent, ProfessorClassesComponent, ContactPageComponent, AboutPageComponent, HomePageComponent, TeamPageComponent, ProfessorStudentsComponent, DeleteUserPopupComponent ],
+  declarations: [ AppComponent, LoginComponent, InfoComponent, StudentRecComponent, SettingComponent, VerificationPopupComponent, OnlynumberDirective, WconlinePopupComponent, ProfessorClassesComponent, ContactPageComponent, AboutPageComponent, HomePageComponent, TeamPageComponent, ProfessorStudentsComponent, DeleteUserPopupComponent, UnauthenticatedUserPageComponent ],
   bootstrap:    [ AppComponent ],
   providers: [ ClassService, PredictionServiceService, UserService, SharingService, EmailService ]
 })

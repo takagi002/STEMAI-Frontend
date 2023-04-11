@@ -100,7 +100,9 @@ export class LoginComponent implements OnInit{
     var exists: any;
     await this.userService.checkIfUserExists(gmail).subscribe(res => {
       exists = res;
+      console.log(exists)
       if(!exists){
+        console.log("opp")
         this.addNewUser(gmail);
         this.goToPage('info');
       } else {
@@ -131,7 +133,7 @@ export class LoginComponent implements OnInit{
         })
 
       } else {
-        this.goToPage('info');
+        this.goToPage('unauthenticated-user');
       }
     })
   }
