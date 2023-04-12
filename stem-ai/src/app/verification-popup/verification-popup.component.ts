@@ -54,7 +54,7 @@ export class VerificationPopupComponent implements OnInit {
   //checks that the code the user entered matches the one stored in the db that was generated
   checkCode(input: any){
     const inputAsNum: number = +input
-    const codeAsNum: number = +this.code
+    const codeAsNum: number = +this.userWithCode.authenticationCode
     if(inputAsNum === codeAsNum){
       this.authenticateUser();
       if(this.userType == "student"){
@@ -75,6 +75,9 @@ export class VerificationPopupComponent implements OnInit {
     await this.userService.updateUserByGmail(this.userWithCode.gannon_id ,this.userWithCode.gmail, this.userWithCode.userType, true, this.userWithCode.idNumber, true).subscribe(res =>{
     })
   }
-
+  toAuthenticatePage(){
+    this.goToPage('unauthenticated-user');
+    this.dialogRef.close();
+  }
 
 }
