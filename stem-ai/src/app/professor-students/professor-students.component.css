@@ -22,8 +22,19 @@
     margin: 20px;
 }
 
-.accordion{
-    width: 85%;
-    left: 10%;
-    margin: 3%;
+body{ min-height: 70vh; margin:0; }
+body{ display:flex; flex-direction:column; }
+article{ flex:1; }
+
+.greytext{
+  margin: 0 auto;
+  color: #646871;
+  width: 80%;
+  text-align: center;
+}
+
+#footerBar {
+  height: 1px;
+  background: black;
+  margin: 0 auto;
 }
