@@ -49,8 +49,10 @@ export class UnauthenticatedUserPageComponent {
   }
 
   //checks that the code the user entered matches the one stored in the db that was generated
-  checkCode(){
-    if(this.userWithCode.authenticationCode == this.authenticationCode){
+  checkCode(input : any){
+    const inputAsNum: number = +input
+    const codeAsNum: number = +this.userWithCode.authenticationCode
+    if(inputAsNum === codeAsNum){
       this.authenticateUser();
       if(this.userType == "student"){
         this.goToPage("student-rec")

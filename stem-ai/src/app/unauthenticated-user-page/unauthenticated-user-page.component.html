@@ -8,7 +8,7 @@
             <mat-divider></mat-divider>
             <div>
                 <form >
-                    <mat-form-field class="input">
+                    <mat-form-field class="input" floatLabel="always">
                         <mat-label>Code</mat-label>
                         <input matInput placeholder="123456" [(ngModel)]="authenticationCode" name="authenticationCodeField">
                     </mat-form-field>
@@ -16,7 +16,7 @@
             </div>
             <mat-divider></mat-divider>
             <div class="row">
-                <button mat-raised-button (click)="checkCode()" class="button" >
+                <button mat-raised-button (click)="checkCode(authenticationCode)" class="button" >
                     <p>Authenticate</p>
                 </button>
                 <button mat-raised-button (click)="resendCode()" class="button" >
