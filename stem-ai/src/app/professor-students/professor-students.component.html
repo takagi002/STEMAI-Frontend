@@ -1,55 +1,52 @@
-<div>
-    <div class="accordion">
-        <mat-accordion >
-            <mat-expansion-panel hideToggle>
-                <mat-expansion-panel-header>
-                    <mat-panel-title>
-                        Tutorial-Click to Open
-                    </mat-panel-title>
-                </mat-expansion-panel-header>
-                <mat-panel-description>
-                    Each panel represents a student in your class.
-                    The checkbox on the left of the panel is how you select
-                    students in order to send them emails recommending
-                    tutoring. If the checkbox is not selectable, that student
-                    has not signed up with STEM-AI and therefore cannot receive
-                    emails from us. The numbers beside the checkbox is the students
-                    id number. The checkbox on the right side of the panel
-                    shows whether the algorithm recommends tutoring for said student.
-                    If the algorithm recommends tutoring that checkbox will be checked,
-                    otherwise the checkbox won't be checked. The question mark icon
-                    besides the checkbox explains why the checkbox is checked as well.
-                    You can use the buttons at the end of the screen to send emails to
-                    selected students by selecting the checkbox on the left side of the
-                    panel and clicking the button Send Selected. If you want to send an
-                    email recommending tutorial to all students you can click the Send All button.
-                </mat-panel-description>
-            </mat-expansion-panel>
-        </mat-accordion>
-    </div>
+<body>
+<article>
+  <div>
     <h2>Students</h2>
     <mat-list *ngFor="let student of students">
-        <mat-list-item>
-            <mat-card class="card">
-                <div class="row">
-                    <div class="row">
-                        <mat-checkbox style="padding: 9px;" [(ngModel)]="student.isSelected" disabled={{!student.isSignedUp}}></mat-checkbox>
-                        <p >{{student.student_id}}</p>
-                    </div>
-                    <div class="row">
-                        <mat-checkbox style="padding: 9px;" disabled="true" checked={{student.needs_tutoring}}></mat-checkbox>
-                        <div >
-                            <mat-icon  style="padding: 17px; color: gray;"
-                            matTooltip="Based on our machine learning algorithm, students with similar grades to
+      <mat-list-item>
+        <mat-card class="card">
+          <div class="row">
+            <div class="row">
+              <mat-checkbox style="padding: 9px;" [(ngModel)]="student.isSelected" disabled={{!student.isSignedUp}}></mat-checkbox>
+              <p >{{student.student_id}}</p>
+            </div>
+            <div class="row">
+              <mat-checkbox style="padding: 9px;" disabled="true" checked={{student.needs_tutoring}}></mat-checkbox>
+              <div >
+                <mat-icon  style="padding: 17px; color: gray;"
+                           matTooltip="Based on our machine learning algorithm, students with similar grades to
                             to this have improved a letter grade by getting tutoring for this class">help</mat-icon>
-                        </div>
-                    </div>
-                </div>
-            </mat-card>
-        </mat-list-item>
+              </div>
+            </div>
+          </div>
+        </mat-card>
+      </mat-list-item>
     </mat-list>
     <div class="button-row">
-        <button mat-raised-button (click)=sendToSelected() class="button">Send Selected</button>
-        <button mat-raised-button (click)="sendToAll()" class="button">Send All</button>
+      <button mat-raised-button (click)=sendToSelected() class="button">Send Selected</button>
+      <button mat-raised-button (click)="sendToAll()" class="button">Send All</button>
     </div>
-</div>
+  </div>
+</article>
+<footer>
+  <div id="footerBar"></div>
+  <div style="padding: 20px">
+    <p class="greytext" style="font-size: 24px; padding: 5px">Helpful Hint</p>
+    <p class="greytext">Each panel represents a student in your class.
+      The checkbox on the left of the panel is how you select
+      students in order to send them emails recommending
+      tutoring. If the checkbox is not selectable, that student
+      has not signed up with STEM-AI and therefore cannot receive
+      emails from us. The numbers beside the checkbox is the students
+      id number. The checkbox on the right side of the panel
+      shows whether the algorithm recommends tutoring for said student.
+      If the algorithm recommends tutoring that checkbox will be checked,
+      otherwise the checkbox won't be checked. The question mark icon
+      besides the checkbox explains why the checkbox is checked as well.
+      You can use the buttons at the end of the screen to send emails to
+      selected students by selecting the checkbox on the left side of the
+      panel and clicking the button Send Selected. If you want to send an
+      email recommending tutorial to all students you can click the Send All button.</p>
+  </div>
+</footer>
+</body>
