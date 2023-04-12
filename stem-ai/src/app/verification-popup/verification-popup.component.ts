@@ -75,10 +75,9 @@ export class VerificationPopupComponent implements OnInit {
     await this.userService.updateUserByGmail(this.userWithCode.gannon_id ,this.userWithCode.gmail, this.userWithCode.userType, true, this.userWithCode.idNumber, true).subscribe(res =>{
     })
   }
-
   toAuthenticatePage(){
     this.goToPage('unauthenticated-user');
     this.dialogRef.close();
   }
-  
+
 }
