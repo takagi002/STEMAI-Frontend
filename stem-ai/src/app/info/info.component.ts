@@ -83,6 +83,8 @@ export class InfoComponent implements OnInit {
   //checks backend to see if a gannon id is already in use
   async checkIfGannonIDExists(type: String){
     var exists: any
+    this.gannonID = this.gannonID.split('@')[0];
+    console.log(this.gannonID);
     await this.userService.checkIfUserExistsGannonID(this.gannonID).subscribe(res =>{
       exists = res;
       if(!exists){
