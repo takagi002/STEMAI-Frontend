@@ -7,16 +7,23 @@
         <mat-card class="card">
           <div class="row">
             <div class="row">
-              <mat-checkbox style="padding: 9px;" [(ngModel)]="student.isSelected" disabled={{!student.isSignedUp}}></mat-checkbox>
+              <mat-checkbox style="padding: 9px;" [(ngModel)]="student.isSelected" *ngIf="student.isSelected; else second"></mat-checkbox>
+              <ng-template #second>
+                <mat-icon style="padding-right: 17px;padding-top: 20px;padding-bottom: 17px;">close</mat-icon>
+              </ng-template>
               <p >{{student.student_id}}</p>
             </div>
             <div class="row">
-              <mat-checkbox style="padding: 9px;" disabled="true" checked={{student.needs_tutoring}}></mat-checkbox>
-              <div >
-                <mat-icon  style="padding: 17px; color: gray;"
+              <div *ngIf="student.needs_tutoring; else elseBlock">
+                <mat-icon  style="padding: 17px; color: green;"
                            matTooltip="Based on our machine learning algorithm, students with similar grades to
-                            to this have improved a letter grade by getting tutoring for this class">help</mat-icon>
+                            you have improved a letter grade by getting tutoring for this class">check</mat-icon>
               </div>
+              <ng-template #elseBlock>
+                <mat-icon  style="padding-right: 17px;padding-top: 17px;padding-bottom: 17px; color: red;"
+                           matTooltip="Our machine learning algorithm does not recommend tutoring for this class for you.
+                            Tutoring could still be beneficial for you if you feel you are struggling.">close</mat-icon>
+              </ng-template>
             </div>
           </div>
         </mat-card>

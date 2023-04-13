@@ -1,4 +1,3 @@
-<p style="font-size: 32px">Welcome, {{userID}}!</p>
 <body>
 <article>
     <h2>Classes</h2>
@@ -8,20 +7,19 @@
           <div class="row">
             <div class="row">
               <mat-icon style="padding: 17px;">book</mat-icon>
-              <p > Class: {{prediction.name}}  </p>
+              <p > {{prediction.name}}  </p>
             </div>
             <div class="row">
               <button mat-raised-button class="button" (click)="openDialog()">WCOnline</button>
-              <mat-checkbox style="padding: 9px;" disabled="true" checked={{prediction.prediction}}></mat-checkbox>
               <div *ngIf="prediction.prediction; else elseBlock">
-                <mat-icon  style="padding: 17px; color: gray;"
+                <mat-icon  style="padding: 17px; color: green;"
                            matTooltip="Based on our machine learning algorithm, students with similar grades to
-                            you have improved a letter grade by getting tutoring for this class">help</mat-icon>
+                            you have improved a letter grade by getting tutoring for this class">star</mat-icon>
               </div>
               <ng-template #elseBlock>
-                <mat-icon  style="padding: 17px; color: gray;"
+                <mat-icon  style="padding-right: 17px;padding-top: 17px;padding-bottom: 17px; color: red;"
                            matTooltip="Our machine learning algorithm does not recommend tutoring for this class for you.
-                            Tutoring could still be beneficial for you if you feel you are struggling.">help</mat-icon>
+                            Tutoring could still be beneficial for you if you feel you are struggling.">close</mat-icon>
               </ng-template>
             </div>
           </div>
