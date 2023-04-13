@@ -14,6 +14,7 @@ export class DeleteUserPopupComponent {
   constructor(public dialogRef: MatDialogRef<DeleteUserPopupComponent>, private userService: UserService, private sharingService: SharingService, private router: Router){}
     
   currentUser: any;
+  userType: any;
 
   onNoClick(): void {
     this.dialogRef.close();
@@ -23,6 +24,7 @@ export class DeleteUserPopupComponent {
     
     //getting user from previous page
     this.currentUser = this.sharingService.getCurrentUser();
+    this.userType = this.sharingService.getUserType();
   
   }
 
@@ -35,6 +37,7 @@ export class DeleteUserPopupComponent {
   //deletes user
   async deleteUser() {
       this.userService.deleteUserByGannonID(this.currentUser).subscribe(res => {});
+      this.sharingService.setUserType("");
       this.dialogRef.close();
       this.goToPage("login")
   }
