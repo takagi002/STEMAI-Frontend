@@ -46,7 +46,6 @@ export class StudentRecComponent implements OnInit{
     //gets the full user info from gmail, then gets all the classes, then gets the predictions from the studentID, then gives the classes name
     this.userService.getUserByGmailId(this.currentUser).subscribe(res => {
       this.fullUser = res;
-      console.log(this.fullUser)
       this.classService.getClasses().subscribe(res=> {
         this.classes = res;
         this.predictionService.getAllStudentPredictionsByStudentId(this.fullUser.idNumber, this.currentSemester).subscribe(res => {
