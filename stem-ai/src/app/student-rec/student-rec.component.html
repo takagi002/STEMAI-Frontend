@@ -1,6 +1,11 @@
 <body>
 <article>
     <h2>Classes</h2>
+    <mat-toolbar class="headers" color="transparent">
+      <span>Class Name</span>
+      <span class="example-spacer"></span>
+      <span>Needs Tutoring</span>
+    </mat-toolbar>
     <mat-list *ngFor="let prediction of predictions">
       <mat-list-item>
         <mat-card class="card">
