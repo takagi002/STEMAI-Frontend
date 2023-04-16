@@ -55,6 +55,7 @@ export class VerificationPopupComponent implements OnInit {
   checkCode(input: any){
     const inputAsNum: number = +input
     const codeAsNum: number = +this.userWithCode.authenticationCode
+
     if(inputAsNum === codeAsNum){
       this.authenticateUser();
       if(this.userType == "student"){

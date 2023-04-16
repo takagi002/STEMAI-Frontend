@@ -16,12 +16,13 @@
             </div>
             <mat-divider></mat-divider>
             <div class="row">
-                <button mat-raised-button (click)="checkCode(authenticationCode)" class="button" >
-                    <p>Authenticate</p>
-                </button>
                 <button mat-raised-button (click)="resendCode()" class="button" >
                     <p>Resend Code</p>
                 </button>
+                <button mat-raised-button (click)="checkCode(authenticationCode)" class="button" >
+                    <p>Authenticate</p>
+                </button>
+               
             </div>
             <mat-divider></mat-divider>
         </mat-card-content>
