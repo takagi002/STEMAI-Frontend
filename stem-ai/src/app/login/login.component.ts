@@ -6,6 +6,7 @@ import { environment } from 'src/environment';
 import {Router} from '@angular/router';
 import { UserService } from '../services/user-services/user.service';
 import { SharingService } from '../services/sharing-service/sharing.service';
+import { StudentService } from '../services/student-service/student.service';
 
 
 @Component({
@@ -20,14 +21,20 @@ export class LoginComponent implements OnInit{
   title = 'stem-ai';
   auth2: any;
   currentUser: any;
+  student: any;
   @ViewChild('loginRef', { static: true }) loginElement!: ElementRef;
-  constructor(private router: Router, private userService: UserService, private sharingService: SharingService) { }
+  constructor(private router: Router, private userService: UserService, private sharingService: SharingService, private studentService: StudentService) { }
   goToPage(pageName:string){
     this.sharingService.setCurrentUser(this.currentUser);
     this.router.navigate([`${pageName}`]);
   }
   ngOnInit() {
-
+    if (!localStorage.getItem('foo')) {
+      localStorage.setItem('foo', 'no reload')
+      location.reload()
+    } else {
+      localStorage.removeItem('foo')
+    }
     this.googleAuthSDK();
     this.sharingService.setCurrentSemester("S2023");
   }
@@ -40,7 +47,7 @@ export class LoginComponent implements OnInit{
         //Print profile details in the console logs
 
         let profile = googleAuthUser.getBasicProfile();
-        
+
         // console.log('Token || ' + googleAuthUser.getAuthResponse().id_token);
         // console.log('ID: ' + profile.getId());
         // console.log('Name: ' + profile.getName());
@@ -50,7 +57,7 @@ export class LoginComponent implements OnInit{
         this.currentUser = profile.getEmail();
         this.checkUserExists(profile.getEmail());
 
-        
+
 
       }, (error: any) => {
         alert(JSON.stringify(error, undefined, 2));
@@ -87,7 +94,7 @@ export class LoginComponent implements OnInit{
   async addNewUser(gmail: String) {
     this.userService.addUser(gmail).subscribe(res => {
       this.user = res;
-    }) 
+    })
   }
 
   //checks db to see if user already exists then if they don't adds a new user and if they do checks if the user is authenticated
@@ -95,15 +102,17 @@ export class LoginComponent implements OnInit{
     var exists: any;
     await this.userService.checkIfUserExists(gmail).subscribe(res => {
       exists = res;
+      console.log(exists)
       if(!exists){
+        console.log("opp")
         this.addNewUser(gmail);
         this.goToPage('info');
       } else {
         this.checkIfAuthenticated(gmail);
       }
-     
+
     })
-    
+
   }
 
   //checks db to see if user authenticated, if they are go to student rec page if not go to info page
@@ -118,15 +127,19 @@ export class LoginComponent implements OnInit{
           this.sharingService.setGannonID(user.gannon_id);
           this.sharingService.setIDNumber(user.idNumber);
           if(user.userType === "student"){
+            this.studentService.getStudent(user.idNumber).subscribe(res => {
+                res = this.student;
+                this.sharingService.setCurrentName(this.student.name);
+            })
             this.goToPage('student-rec');
           } else if(user.userType === "professor"){
             this.sharingService.setGannonID(user.gannon_id);
             this.goToPage('professor-classes');
           }
         })
-        
+
       } else {
-        this.goToPage('info');
+        this.goToPage('unauthenticated-user');
       }
     })
   }

@@ -11,12 +11,11 @@
     -webkit-text-fill-color: white;
 }
 
-.welcome{
-  justify-content: center;
-  background-color: rgba(5, 5, 5, 0.856);
-  -webkit-text-fill-color: white;
-}
-
 .container{
   margin: 5%;
+}
+
+.welcome{
+  font-size: 1.5rem;
+  padding-left: 170px;
 }

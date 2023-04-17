@@ -39,7 +39,7 @@
     display: block;
     width: 100%;
     background-color: lightgray;
-    top: 0; 
+    top: 0;
     left: 0;
     text-align: center;
     font-size: 30px;
@@ -47,4 +47,12 @@
   }
   .tutoring{
     text-align: center;
+  }
+
+  .mat-card-title{
+    padding: 30px;
+  }
+
+  .mat-card-subtitle{
+    padding: 15px;
   }

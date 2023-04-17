@@ -14,17 +14,17 @@
                 <mat-list-item role="listitem">
                     <span matListItemTitle>3. Choose your role.</span>
                     <span matListItemLine>
-                        3.a If you are a professor click the professor button below the Gannon ID Number 
+                        3.a If you are a professor click the professor button below the Gannon ID Number
                         input box
                     </span>
                     <span matListItemLine>
-                        3.b If you are a student click the student button below the Gannon ID Number 
+                        3.b If you are a student click the student button below the Gannon ID Number
                         input box
                     </span>
                 </mat-list-item>
                 <mat-list-item>
                     4. When you click the button an email will be sent to your Gannon Email with
-                    a verification code.  
+                    a verification code.
                 </mat-list-item>
                 <mat-list-item>
                     5. Enter the verification code from the email in the textbox from the popup. After you entered the verification code, click enter.
@@ -42,7 +42,7 @@
             <mat-divider></mat-divider>
             <div>
                 <form >
-                    <mat-form-field class="input">
+                    <mat-form-field class="input" floatLabel="always">
                         <mat-label>Gannon Email ID</mat-label>
                         <input matInput placeholder="Ex. smith001" [(ngModel)]="gannonID" name="gannonIDLabel">
                     </mat-form-field>
@@ -51,7 +51,7 @@
             <mat-divider></mat-divider>
             <div>
                 <form >
-                    <mat-form-field class="input">
+                    <mat-form-field class="input" floatLabel="always">
                         <mat-label>Gannon ID Number</mat-label>
                         <input matInput placeholder="Ex. 123456" [(ngModel)]="idNumber" appOnlynumber name="idNumberLabel" maxlength="6">
                     </mat-form-field>
@@ -72,4 +72,3 @@
         </mat-card-content>
     </mat-card>
 </section>
-    
