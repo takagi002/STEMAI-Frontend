@@ -1,7 +1,7 @@
 <header>
     <mat-toolbar class="main-nav" >
         <span>STEM-AI</span>
-        <span class="welcome" *ngIf="userType == 'professor' || userType == 'student'">Welcome, {{userID}}</span>
+        <span class="welcome" *ngIf="userType == 'professor' || userType == 'student'">Welcome, {{name}}</span>
         <div>
             <button mat-button (click)="goToPage('home-page')">Home</button>
             <button mat-button (click)="goToPage('about-page')">About</button>

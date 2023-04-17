@@ -38,6 +38,16 @@
     padding-right: 20px;
 }
 
+.headers{
+    padding-right: 250px;
+    padding-left: 150px;
+    background-color: rgb(198, 209, 157);
+}
+
+.example-spacer {
+    flex: 1 1 auto;
+  }
+
 body{ min-height: 70vh; margin:0; }
 body{ display:flex; flex-direction:column; }
 article{ flex:1; }

@@ -6,6 +6,7 @@ import { environment } from 'src/environment';
 import {Router} from '@angular/router';
 import { UserService } from '../services/user-services/user.service';
 import { SharingService } from '../services/sharing-service/sharing.service';
+import { StudentService } from '../services/student-service/student.service';
 
 
 @Component({
@@ -20,8 +21,9 @@ export class LoginComponent implements OnInit{
   title = 'stem-ai';
   auth2: any;
   currentUser: any;
+  student: any;
   @ViewChild('loginRef', { static: true }) loginElement!: ElementRef;
-  constructor(private router: Router, private userService: UserService, private sharingService: SharingService) { }
+  constructor(private router: Router, private userService: UserService, private sharingService: SharingService, private studentService: StudentService) { }
   goToPage(pageName:string){
     this.sharingService.setCurrentUser(this.currentUser);
     this.router.navigate([`${pageName}`]);
@@ -125,6 +127,10 @@ export class LoginComponent implements OnInit{
           this.sharingService.setGannonID(user.gannon_id);
           this.sharingService.setIDNumber(user.idNumber);
           if(user.userType === "student"){
+            this.studentService.getStudent(user.idNumber).subscribe(res => {
+                res = this.student;
+                this.sharingService.setCurrentName(this.student.name);
+            })
             this.goToPage('student-rec');
           } else if(user.userType === "professor"){
             this.sharingService.setGannonID(user.gannon_id);

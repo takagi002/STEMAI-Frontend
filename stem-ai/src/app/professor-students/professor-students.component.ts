@@ -6,6 +6,7 @@ import { ProfessorClassesService } from '../services/professor-class-service/pro
 import { SharingService } from '../services/sharing-service/sharing.service';
 import { UserService } from '../services/user-services/user.service';
 import { PredictionServiceService } from '../services/prediction-service/prediction-service.service';
+import { StudentService } from '../services/student-service/student.service';
 
 @Component({
   selector: 'app-professor-students',
@@ -21,8 +22,9 @@ export class ProfessorStudentsComponent {
   currentSemester: any;
   currentGannonId: any;
   currentClassName: any;
+  fullStudent: any;
 
-  constructor(private sharingService: SharingService, private router: Router, private professorClassesService: ProfessorClassesService, private userService: UserService, private emailService: EmailService, private errorSnackBar: MatSnackBar, private predictionService: PredictionServiceService) {}
+  constructor(private sharingService: SharingService, private router: Router, private professorClassesService: ProfessorClassesService, private userService: UserService, private emailService: EmailService, private errorSnackBar: MatSnackBar, private predictionService: PredictionServiceService, private studentService: StudentService) {}
 
   ngOnInit(){
 
@@ -42,6 +44,7 @@ export class ProfessorStudentsComponent {
       this.students = res;
 
       this.students.forEach((studie: {
+        name: any;
         needs_tutoring: any;
         isSignedUp: boolean; student_id: string; 
       }) => {
@@ -55,6 +58,11 @@ export class ProfessorStudentsComponent {
         });
         this.predictionService.getStudentPredictionsByStudentIDandClass(studie.student_id, this.currentSemester, this.currentClass).subscribe(res => {
           studie.needs_tutoring = res
+        })
+        this.studentService.getStudent(studie.student_id).subscribe(res => {
+          this.fullStudent = res;
+
+          studie.name = this.fullStudent.name;
         })
         
         

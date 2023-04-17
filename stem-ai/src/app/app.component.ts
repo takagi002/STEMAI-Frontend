@@ -12,6 +12,7 @@ export class AppComponent{
   title = 'stem-ai';
   userID: any;
   userType: any;
+  name: any;
   authenticated: any;
 
   constructor(public router: Router, private sharingService: SharingService) { }
@@ -24,5 +25,6 @@ export class AppComponent{
     this.userID = this.sharingService.getIDNumber();
     this.userType = this.sharingService.getUserType();
     this.authenticated = this.sharingService.getAuthenticated();
+    this.name = this.sharingService.getCurrentName();
   }
 }

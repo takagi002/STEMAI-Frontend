@@ -7,6 +7,7 @@ import { PredictionServiceService } from '../services/prediction-service/predict
 import { ClassService } from '../services/class-service/class.service';
 import { SharingService } from '../services/sharing-service/sharing.service';
 import { Router } from '@angular/router';
+import { StudentService } from '../services/student-service/student.service';
 
 export interface DialogData {
   code: any;
@@ -18,7 +19,7 @@ export interface DialogData {
   styleUrls: ['./student-rec.component.css']
 })
 export class StudentRecComponent implements OnInit{
-  constructor(private userService: UserService, public dialogRef: MatDialog,private zone: NgZone, private predictionService: PredictionServiceService, private classService: ClassService, private sharingService: SharingService, private router: Router) {}
+  constructor(private userService: UserService, public dialogRef: MatDialog,private zone: NgZone, private predictionService: PredictionServiceService, private classService: ClassService, private sharingService: SharingService, private router: Router, private studentService: StudentService) {}
 
   predictions: any = [];
   currentUser: any;
@@ -26,6 +27,7 @@ export class StudentRecComponent implements OnInit{
   fullUser: any;
   currentSemester: any;
   userID: any;
+  student: any;
 
   goToPage(pageName:string){
     this.sharingService.setCurrentUser(this.currentUser);
@@ -46,7 +48,6 @@ export class StudentRecComponent implements OnInit{
     //gets the full user info from gmail, then gets all the classes, then gets the predictions from the studentID, then gives the classes name
     this.userService.getUserByGmailId(this.currentUser).subscribe(res => {
       this.fullUser = res;
-      console.log(this.fullUser)
       this.classService.getClasses().subscribe(res=> {
         this.classes = res;
         this.predictionService.getAllStudentPredictionsByStudentId(this.fullUser.idNumber, this.currentSemester).subscribe(res => {
@@ -57,6 +58,12 @@ export class StudentRecComponent implements OnInit{
     })
 
 
+    this.studentService.getStudent(this.userID).subscribe(res => {
+      this.student = res;
+      console.log(res);
+
+      this.sharingService.setCurrentName(this.student.name);
+    })
 
 
   }
