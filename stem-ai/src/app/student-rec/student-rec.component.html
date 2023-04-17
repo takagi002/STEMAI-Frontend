@@ -1,31 +1,30 @@
 <body>
 <article>
-    <h2>Classes</h2>
-    <mat-list *ngFor="let prediction of predictions">
-      <mat-list-item>
-        <mat-card class="card">
-          <div class="row">
-            <div class="row">
-              <mat-icon style="padding: 17px;">book</mat-icon>
-              <p > {{prediction.name}}  </p>
-            </div>
-            <div class="row">
-              <button mat-raised-button class="button" (click)="openDialog()">WCOnline</button>
-              <div *ngIf="prediction.prediction; else elseBlock">
-                <mat-icon  style="padding: 17px; color: green;"
-                           matTooltip="Based on our machine learning algorithm, students with similar grades to
-                            you have improved a letter grade by getting tutoring for this class">star</mat-icon>
-              </div>
-              <ng-template #elseBlock>
-                <mat-icon  style="padding-right: 17px;padding-top: 17px;padding-bottom: 17px; color: red;"
-                           matTooltip="Our machine learning algorithm does not recommend tutoring for this class for you.
-                            Tutoring could still be beneficial for you if you feel you are struggling.">close</mat-icon>
-              </ng-template>
-            </div>
+    <table >
+      <thead>
+        <tr>
+          <th style="text-align: left;">Class</th>
+          <th>Go To WCOnline</th>
+          <th>Needs Tutoring</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let prediction of predictions">
+          <td>{{prediction.name}}</td>
+          <td><button mat-raised-button style="margin-left: 35%;" (click)="openDialog()">WCOnline</button></td>
+          <td><div *ngIf="prediction.prediction; else elseBlock">
+            <mat-icon  style="margin-left: 50%; color: green;"
+                       matTooltip="Based on our machine learning algorithm, students with similar grades to
+                        you have improved a letter grade by getting tutoring for this class">star</mat-icon>
           </div>
-        </mat-card>
-      </mat-list-item>
-    </mat-list>
+          <ng-template #elseBlock>
+            <mat-icon  style="padding-left: 50%; color: red;"
+                       matTooltip="Our machine learning algorithm does not recommend tutoring for this class for you.
+                        Tutoring could still be beneficial for you if you feel you are struggling.">close</mat-icon>
+          </ng-template></td>
+        </tr>
+      </tbody>
+    </table>
 </article>
 <footer>
   <div id="footerBar"></div>

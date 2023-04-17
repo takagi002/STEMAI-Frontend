@@ -64,3 +64,27 @@ article{ flex:1; }
   background: black;
   margin: 0 auto;
 }
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+    margin-bottom: .5em;
+  }
+  
+  th,
+  td {
+    padding: 0.5em;
+    border: 1px solid #ddd;
+    font-size: 1.2em;
+  }
+  
+  th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+    font-size: 1.4em;
+  }
+  
+  tr:nth-child(even) {
+    background-color: #f2f2f2;
+  }
+  
