@@ -1,8 +1,9 @@
-import { Component } from '@angular/core';
-import { OnInit } from '@angular/core';
+import { Component, OnInit, NgZone } from '@angular/core';
 import { ViewChild } from '@angular/core';
 import { ElementRef } from '@angular/core';
 import { environment } from 'src/environment';
+import { CredentialResponse, PromptMomentNotification } from 'google-one-tap';
+import { AuthService } from '../services/authentication/auth.service';
 import {Router} from '@angular/router';
 import { UserService } from '../services/user-services/user.service';
 import { SharingService } from '../services/sharing-service/sharing.service';
@@ -22,8 +23,10 @@ export class LoginComponent implements OnInit{
   auth2: any;
   currentUser: any;
   student: any;
-  @ViewChild('loginRef', { static: true }) loginElement!: ElementRef;
-  constructor(private router: Router, private userService: UserService, private sharingService: SharingService, private studentService: StudentService) { }
+
+  private clientId = environment.clientid
+
+  constructor(private router: Router, private userService: UserService, private sharingService: SharingService, private studentService: StudentService, private _ngZone: NgZone, private authenticationService: AuthService,) { }
   goToPage(pageName:string){
     this.sharingService.setCurrentUser(this.currentUser);
     this.router.navigate([`${pageName}`]);
@@ -35,60 +38,39 @@ export class LoginComponent implements OnInit{
     } else {
       localStorage.removeItem('foo')
     }
-    this.googleAuthSDK();
+    // @ts-ignore
+    window.onGoogleLibraryLoad = () => {
+      // @ts-ignore
+      google.accounts.id.initialize({
+        client_id: this.clientId,
+        callback: this.handleCredentialResponse.bind(this),
+        auto_select: false,
+        cancel_on_tap_outside: true
+      });
+      // @ts-ignore
+      google.accounts.id.renderButton(
+      // @ts-ignore
+      document.getElementById("buttonDiv"),
+        { theme: "outline", size: "large", width: "100%" } 
+      );
+      // @ts-ignore
+      google.accounts.id.prompt((notification: PromptMomentNotification) => {});
+    };
+    
     this.sharingService.setCurrentSemester("S2023");
   }
 
-   callLogin() {
-
-    this.auth2.attachClickHandler(this.loginElement.nativeElement, {},
-      (googleAuthUser: any) => {
-
-        //Print profile details in the console logs
-
-        let profile = googleAuthUser.getBasicProfile();
-
-        // console.log('Token || ' + googleAuthUser.getAuthResponse().id_token);
-        // console.log('ID: ' + profile.getId());
-        // console.log('Name: ' + profile.getName());
-        // console.log('Image URL: ' + profile.getImageUrl());
-        // console.log('Email: ' + profile.getEmail());
-
-        this.currentUser = profile.getEmail();
-        this.checkUserExists(profile.getEmail());
-
-
-
-      }, (error: any) => {
-        alert(JSON.stringify(error, undefined, 2));
-      });
-
-  }
-
-  googleAuthSDK() {
-
-    (<any>window)['googleSDKLoaded'] = () => {
-      (<any>window)['gapi'].load('auth2', () => {
-        this.auth2 = (<any>window)['gapi'].auth2.init({
-          client_id: environment.clientid,
-          plugin_name:'login',
-          cookiepolicy: 'single_host_origin',
-          scope: 'profile email'
-        });
-        this.callLogin();
-      });
-    }
-
-    (function (d, s, id) {
-      var js, fjs = d.getElementsByTagName(s)[0];
-      if (d.getElementById(id)) { return; }
-      js = d.createElement('script');
-      js.id = id;
-      js.src = "https://apis.google.com/js/platform.js?onload=googleSDKLoaded";
-      fjs?.parentNode?.insertBefore(js, fjs);
-    }(document, 'script', 'google-jssdk'));
-  }
-
+  async handleCredentialResponse(response: CredentialResponse) {
+    await this.authenticationService.LoginWithGoogle(response.credential).subscribe(
+      (x:any) => {
+        this._ngZone.run(() => {
+          this.router.navigate(['/logout']);
+        })},
+      (error:any) => {
+          console.log(error);
+        }
+      );  
+}
 
   //adds a new user
   async addNewUser(gmail: String) {

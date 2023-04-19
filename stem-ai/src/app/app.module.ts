@@ -23,7 +23,9 @@ import {MatDialogModule} from '@angular/material/dialog';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatMenuModule} from '@angular/material/menu';
 import {MatExpansionModule} from '@angular/material/expansion';
-
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { Interceptor } from './interceptor';
+import { AuthService } from './services/authentication/auth.service';
 
 import { AppComponent } from './app.component';
 import { InfoComponent } from './info/info.component';
@@ -85,7 +87,9 @@ imports: [
                   FormsModule, MatDialogModule, MatSnackBarModule, BrowserAnimationsModule, MatMenuModule, MatExpansionModule],
   declarations: [ AppComponent, LoginComponent, InfoComponent, StudentRecComponent, SettingComponent, VerificationPopupComponent, OnlynumberDirective, WconlinePopupComponent, ProfessorClassesComponent, ContactPageComponent, AboutPageComponent, HomePageComponent, TeamPageComponent, ProfessorStudentsComponent, DeleteUserPopupComponent, UnauthenticatedUserPageComponent ],
   bootstrap:    [ AppComponent ],
-  providers: [ ClassService, PredictionServiceService, UserService, SharingService, EmailService ]
+  providers: [ ClassService, PredictionServiceService, UserService, SharingService, EmailService, {provide: HTTP_INTERCEPTORS, 
+    useClass: Interceptor, 
+    multi: true} ]
 })
 
 export class AppModule { 

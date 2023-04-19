@@ -13,6 +13,9 @@ import { UserService } from '../services/user-services/user.service';
 export class SettingComponent {
 
   currentUser: any;
+  name: any; 
+  userID: any;
+  gannonID: any;
   fullUser: any;
   checked: any;
 
@@ -21,6 +24,9 @@ export class SettingComponent {
   ngOnInit(){
 
     this.currentUser = this.sharingService.getCurrentUser();
+    this.name = this.sharingService.getCurrentName();
+    this.userID = this.sharingService.getIDNumber();
+    this.gannonID = this.sharingService.getGannonID();
     this.userService.getUserByGmailId(this.currentUser).subscribe(res =>{
       this.fullUser = res;
       this.checked = this.fullUser.notifications;
