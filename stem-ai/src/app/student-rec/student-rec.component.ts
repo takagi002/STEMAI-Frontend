@@ -28,6 +28,7 @@ export class StudentRecComponent implements OnInit{
   currentSemester: any;
   userID: any;
   student: any;
+  name: any; 
 
   goToPage(pageName:string){
     this.sharingService.setCurrentUser(this.currentUser);
@@ -40,6 +41,7 @@ export class StudentRecComponent implements OnInit{
     this.currentUser = this.sharingService.getCurrentUser();
     this.currentSemester = this.sharingService.getCurrentSemester();
     this.userID = this.sharingService.getIDNumber();
+    this.name = this.sharingService.getCurrentName();
 
     if(Object.keys(this.currentUser).length === 0){
       this.goToPage("login")
@@ -64,7 +66,6 @@ export class StudentRecComponent implements OnInit{
 
       this.sharingService.setCurrentName(this.student.name);
     })
-
 
   }
   //this will open WConline popup that will redirect you there
