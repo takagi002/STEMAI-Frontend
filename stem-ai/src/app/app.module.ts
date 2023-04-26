@@ -46,6 +46,7 @@ import { TeamPageComponent } from './team-page/team-page.component';
 import { ProfessorStudentsComponent } from './professor-students/professor-students.component';
 import { DeleteUserPopupComponent } from './delete-user-popup/delete-user-popup.component';
 import { UnauthenticatedUserPageComponent } from './unauthenticated-user-page/unauthenticated-user-page.component';
+import { HelpfulResourcesComponent } from './helpful-resources/helpful-resources.component';
 
 const routes: Routes = [
   { path: 'info', component: InfoComponent },
@@ -69,7 +70,9 @@ const routes: Routes = [
   { path: 'professor-students', component: ProfessorStudentsComponent },
   { path: '', redirectTo: '/professor-students', pathMatch: 'full' },
   { path: 'unauthenticated-user', component: UnauthenticatedUserPageComponent },
-  { path: '', redirectTo: '/unauthenticated-user', pathMatch: 'full' }
+  { path: '', redirectTo: '/unauthenticated-user', pathMatch: 'full' },
+  { path: 'helpful-resources', component: HelpfulResourcesComponent },
+  { path: '', redirectTo: '/helpful-resources', pathMatch: 'full' }
 ];
 
 imports: [
@@ -83,7 +86,7 @@ imports: [
                   MatFormFieldModule, MatInputModule, MatIconModule, MatButtonModule, MatToolbarModule, MatSlideToggleModule, 
                   MatCheckboxModule, MatCardModule, FlexLayoutModule, BrowserModule, RouterModule.forRoot(routes), 
                   FormsModule, MatDialogModule, MatSnackBarModule, BrowserAnimationsModule, MatMenuModule, MatExpansionModule],
-  declarations: [ AppComponent, LoginComponent, InfoComponent, StudentRecComponent, SettingComponent, VerificationPopupComponent, OnlynumberDirective, WconlinePopupComponent, ProfessorClassesComponent, ContactPageComponent, AboutPageComponent, HomePageComponent, TeamPageComponent, ProfessorStudentsComponent, DeleteUserPopupComponent, UnauthenticatedUserPageComponent ],
+  declarations: [ AppComponent, LoginComponent, InfoComponent, StudentRecComponent, SettingComponent, VerificationPopupComponent, OnlynumberDirective, WconlinePopupComponent, ProfessorClassesComponent, ContactPageComponent, AboutPageComponent, HomePageComponent, TeamPageComponent, ProfessorStudentsComponent, DeleteUserPopupComponent, UnauthenticatedUserPageComponent, HelpfulResourcesComponent ],
   bootstrap:    [ AppComponent ],
   providers: [ ClassService, PredictionServiceService, UserService, SharingService, EmailService ]
 })

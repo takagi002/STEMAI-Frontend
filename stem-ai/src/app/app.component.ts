@@ -27,4 +27,9 @@ export class AppComponent{
     this.authenticated = this.sharingService.getAuthenticated();
     this.name = this.sharingService.getCurrentName();
   }
+
+  logout1(){
+    this.sharingService.cleanAll();
+    this.goToPage("home-page");
+  }
 }

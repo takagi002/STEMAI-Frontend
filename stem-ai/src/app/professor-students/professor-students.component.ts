@@ -27,7 +27,6 @@ export class ProfessorStudentsComponent {
   constructor(private sharingService: SharingService, private router: Router, private professorClassesService: ProfessorClassesService, private userService: UserService, private emailService: EmailService, private errorSnackBar: MatSnackBar, private predictionService: PredictionServiceService, private studentService: StudentService) {}
 
   ngOnInit(){
-
     this.currentUser = this.sharingService.getCurrentUser();
     this.userID = this.sharingService.getIDNumber();
     this.currentClass = this.sharingService.getCurrentClass();

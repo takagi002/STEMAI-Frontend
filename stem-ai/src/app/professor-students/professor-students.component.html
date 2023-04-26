@@ -1,34 +1,37 @@
 <body>
 <article>
   <div>
-    <h2>Students</h2>
-    <mat-list *ngFor="let student of students">
-      <mat-list-item>
-        <mat-card class="card">
-          <div class="row">
-            <div class="row">
-              <mat-checkbox style="padding: 9px;" [(ngModel)]="student.isSelected" *ngIf="student.isSelected; else second"></mat-checkbox>
+    <table >
+      <thead>
+        <tr>
+          <th>Select Student</th>
+          <th>Student</th>
+          <th>Needs Tutoring</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let student of students">
+          <td style="text-align: center">
+            <mat-checkbox [(ngModel)]="student.isSignedUp" *ngIf="student.isSignedUp; else second"></mat-checkbox>
               <ng-template #second>
-                <mat-icon style="padding-right: 17px;padding-top: 20px;padding-bottom: 17px;">close</mat-icon>
+                <mat-icon>close</mat-icon>
               </ng-template>
-              <p >{{student.name}}</p>
-            </div>
-            <div class="row">
-              <div *ngIf="student.needs_tutoring; else elseBlock">
-                <mat-icon  style="padding: 17px; color: green;"
-                           matTooltip="Based on our machine learning algorithm, students with similar grades to
-                            you have improved a letter grade by getting tutoring for this class">check</mat-icon>
-              </div>
-              <ng-template #elseBlock>
-                <mat-icon  style="padding-right: 17px;padding-top: 17px;padding-bottom: 17px; color: red;"
-                           matTooltip="Our machine learning algorithm does not recommend tutoring for this class for you.
-                            Tutoring could still be beneficial for you if you feel you are struggling.">close</mat-icon>
-              </ng-template>
-            </div>
+          </td>
+          <td style="text-align: center;">{{student.name}}</td>
+          <td style="text-align: center"><div *ngIf="student.needs_tutoring; else elseBlock">
+            <mat-icon  style="color: green;"
+                       matTooltip="Based on our machine learning algorithm, students with similar grades to
+                        you have improved a letter grade by getting tutoring for this class">check</mat-icon>
           </div>
-        </mat-card>
-      </mat-list-item>
-    </mat-list>
+          <ng-template #elseBlock>
+            <mat-icon  style="color: red;"
+                       matTooltip="Our machine learning algorithm does not recommend tutoring for this class for you.
+                        Tutoring could still be beneficial for you if you feel you are struggling.">close</mat-icon>
+          </ng-template>
+        </td>
+        </tr>
+      </tbody>
+    </table>
     <div class="button-row">
       <button mat-raised-button (click)=sendToSelected() class="button">Send Selected</button>
       <button mat-raised-button (click)="sendToAll()" class="button">Send All</button>

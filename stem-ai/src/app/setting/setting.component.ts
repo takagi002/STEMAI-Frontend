@@ -15,18 +15,21 @@ export class SettingComponent {
   currentUser: any;
   fullUser: any;
   checked: any;
+  name: any; 
+  userID: any;
+  gannonID: any;
 
   constructor(private sharingService: SharingService, private router: Router, private userService: UserService, public dialogRef: MatDialog, private zone: NgZone,) {}
 
   ngOnInit(){
-
+    this.name = this.sharingService.getCurrentName();
+    this.userID = this.sharingService.getIDNumber();
+    this.gannonID = this.sharingService.getGannonID();
     this.currentUser = this.sharingService.getCurrentUser();
     this.userService.getUserByGmailId(this.currentUser).subscribe(res =>{
       this.fullUser = res;
       this.checked = this.fullUser.notifications;
     })
-    
-
     if(Object.keys(this.currentUser).length === 0){
       this.goToPage("login")
     }
@@ -51,5 +54,4 @@ export class SettingComponent {
       this.dialogRef.open(DeleteUserPopupComponent);
     })
   }
-
 }

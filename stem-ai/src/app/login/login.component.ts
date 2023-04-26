@@ -119,11 +119,13 @@ export class LoginComponent implements OnInit{
   async checkIfAuthenticated(gmail: String){
     var authenticated: any;
     var user: any;
+
     await this.userService.checkIfUserAuthenticated(gmail).subscribe(res => {
       authenticated = res;
       if(authenticated){
          this.userService.getUserByGmailId(gmail).subscribe(res =>{
           user = res;
+          this.sharingService.setUserType(user.userType);
           this.sharingService.setGannonID(user.gannon_id);
           this.sharingService.setIDNumber(user.idNumber);
           if(user.userType === "student"){
