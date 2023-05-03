@@ -12,7 +12,7 @@
       <tbody>
         <tr *ngFor="let student of students">
           <td style="text-align: center">
-            <mat-checkbox [(ngModel)]="student.isSignedUp" *ngIf="student.isSignedUp; else second"></mat-checkbox>
+            <mat-checkbox [(ngModel)]="student.isSelected" *ngIf="student.isSignedUp; else second"></mat-checkbox>
               <ng-template #second>
                 <mat-icon>close</mat-icon>
               </ng-template>
